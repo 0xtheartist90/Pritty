@@ -5,39 +5,40 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
+  /* Pritty Landscapes — earthy, refined, inspired by water */
+  --background: oklch(0.962 0.011 95);      /* warm cream */
+  --foreground: oklch(0.27 0.035 150);      /* deep forest */
+  --card: oklch(0.978 0.008 95);
+  --card-foreground: oklch(0.27 0.035 150);
+  --popover: oklch(0.978 0.008 95);
+  --popover-foreground: oklch(0.27 0.035 150);
+  --primary: oklch(0.4 0.07 150);           /* forest green accent */
+  --primary-foreground: oklch(0.97 0.012 95);
+  --secondary: oklch(0.93 0.012 100);
+  --secondary-foreground: oklch(0.3 0.035 150);
+  --muted: oklch(0.93 0.012 100);
+  --muted-foreground: oklch(0.52 0.022 125); /* earthy taupe-green */
+  --accent: oklch(0.91 0.02 130);
+  --accent-foreground: oklch(0.3 0.04 150);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.87 0 0);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.87 0 0);
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
+  --border: oklch(0.87 0.013 100);
+  --input: oklch(0.87 0.013 100);
+  --ring: oklch(0.4 0.07 150);
+  --chart-1: oklch(0.4 0.07 150);
+  --chart-2: oklch(0.55 0.06 140);
+  --chart-3: oklch(0.65 0.05 120);
+  --chart-4: oklch(0.7 0.06 90);
+  --chart-5: oklch(0.5 0.05 160);
+  --radius: 0rem;
+  --sidebar: oklch(0.978 0.008 95);
+  --sidebar-foreground: oklch(0.27 0.035 150);
+  --sidebar-primary: oklch(0.4 0.07 150);
+  --sidebar-primary-foreground: oklch(0.97 0.012 95);
+  --sidebar-accent: oklch(0.91 0.02 130);
+  --sidebar-accent-foreground: oklch(0.3 0.04 150);
+  --sidebar-border: oklch(0.87 0.013 100);
+  --sidebar-ring: oklch(0.4 0.07 150);
 }
 
 .dark {
@@ -131,6 +132,7 @@
 @theme inline {
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-fraunces);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -193,7 +195,123 @@
   * {
     @apply border-border outline-ring/50;
   }
+  html {
+    scroll-behavior: smooth;
+  }
   body {
     @apply bg-background text-foreground;
+  }
+  ::selection {
+    background: var(--primary);
+    color: var(--primary-foreground);
+  }
+}
+
+@layer utilities {
+  /* Sharp, editorial aesthetic — no rounded corners anywhere. */
+  *,
+  *::before,
+  *::after {
+    border-radius: 0 !important;
+  }
+
+  /* High-end reveal-on-scroll system — a choreographed set of motions.
+     Easing: a refined ease-out (cubic-bezier 0.16, 1, 0.3, 1). */
+  .rv {
+    opacity: 0;
+    transition:
+      opacity 1.25s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 1.35s cubic-bezier(0.16, 1, 0.3, 1),
+      filter 1.35s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform, filter;
+  }
+  .rv.is-visible {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+  .rv-up {
+    transform: translateY(34px);
+  }
+  .rv-down {
+    transform: translateY(-30px);
+  }
+  .rv-left {
+    transform: translateX(-46px);
+  }
+  .rv-right {
+    transform: translateX(46px);
+  }
+  .rv-blur {
+    transform: translateY(16px);
+    filter: blur(16px);
+  }
+  .rv-scale {
+    transform: scale(0.9);
+  }
+
+  /* Legacy alias (fade-up). */
+  .reveal {
+    opacity: 0;
+    transform: translateY(34px);
+    transition:
+      opacity 1.25s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 1.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Clip wipe — content unveils left-to-right. */
+  .rv-mask {
+    clip-path: inset(0 100% 0 0);
+    transition: clip-path 1.45s cubic-bezier(0.7, 0, 0.2, 1);
+  }
+  .rv-mask.is-visible {
+    clip-path: inset(0 0 0 0);
+  }
+
+  /* Media curtain — a solid panel sweeps off the frame while the image settles
+     from a gentle zoom. The signature reveal for photography. */
+  .reveal-media {
+    position: relative;
+  }
+  .reveal-media::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 5;
+    background: var(--primary);
+    transform: scaleX(1);
+    transform-origin: right;
+    transition: transform 1.4s cubic-bezier(0.7, 0, 0.2, 1);
+  }
+  .reveal-media.is-visible::after {
+    transform: scaleX(0);
+  }
+  .reveal-media img {
+    transform: scale(1.22);
+    transition: transform 2.3s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform;
+  }
+  .reveal-media.is-visible img {
+    transform: scale(1);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .rv,
+    .rv-mask,
+    .reveal,
+    .reveal-media img {
+      transition: none;
+      opacity: 1;
+      transform: none;
+      filter: none;
+      clip-path: none;
+    }
+    .reveal-media::after {
+      display: none;
+    }
   }
 }
