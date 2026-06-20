@@ -74,7 +74,8 @@ const BgVideo = ({ videoId, poster, posterAlt = '', start = 0 }: BgVideoProps) =
         let revealTimer = 0;
         let revealed = false;
 
-        loadApi().then(() => {
+        const init = async () => {
+            await loadApi();
             if (cancelled || !hostRef.current) return;
             player = new window.YT.Player(hostRef.current, {
                 videoId,
@@ -117,7 +118,9 @@ const BgVideo = ({ videoId, poster, posterAlt = '', start = 0 }: BgVideoProps) =
 
             const iframe = player.getIframe?.();
             if (iframe) Object.assign(iframe.style, COVER_STYLE);
-        });
+        };
+
+        void init();
 
         return () => {
             cancelled = true;
