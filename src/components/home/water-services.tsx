@@ -1,5 +1,6 @@
 import Link from 'next/link';
 
+import BgVideo from '@/components/bg-video';
 import Reveal from '@/components/reveal';
 
 import { Anchor, ArrowUpRight, Hammer, Ship } from 'lucide-react';
@@ -28,9 +29,8 @@ const ITEMS = [
  */
 const WaterServices = () => {
     return (
-        <section
-            className='relative flex min-h-[100svh] items-center overflow-hidden bg-fixed bg-cover bg-center py-24'
-            style={{ backgroundImage: "url('/gallery/water.webp')" }}>
+        <section className='relative flex min-h-[100svh] items-center overflow-hidden py-24'>
+            <BgVideo videoId='wgoDINcFZ9g' poster='/gallery/water.webp' posterAlt='Waterfront landscape' />
             <div className='absolute inset-0 bg-[#0e1a13]/65' />
             <div className='from-[#0e1a13]/85 absolute inset-0 bg-gradient-to-t via-[#0e1a13]/35 to-[#0e1a13]/70' />
 

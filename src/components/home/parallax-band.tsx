@@ -1,6 +1,9 @@
-import Reveal from '@/components/reveal';
+import Link from 'next/link';
 
-import { Leaf } from 'lucide-react';
+import Reveal from '@/components/reveal';
+import { Button } from '@/registry/new-york-v4/ui/button';
+
+import { ArrowUpRight, Leaf } from 'lucide-react';
 
 /**
  * Full-viewport statement band with a fixed-attachment parallax background.
@@ -30,6 +33,13 @@ const ParallaxBand = () => {
                         Every shoreline, every garden, every stone is placed with intention — sustainable by principle,
                         timeless by design. This is what earned us the Green Stamp Award.
                     </p>
+                </Reveal>
+                <Reveal variant='scale' delay={360}>
+                    <Button asChild size='lg' className='mt-9 bg-white px-7 text-[#16241b] hover:bg-white/90'>
+                        <Link href='/about'>
+                            More About Us <ArrowUpRight className='size-4' />
+                        </Link>
+                    </Button>
                 </Reveal>
             </div>
         </section>

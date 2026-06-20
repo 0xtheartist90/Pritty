@@ -1,4 +1,3 @@
-import AboutIntro from '@/components/home/about-intro';
 import Approach from '@/components/home/approach';
 import Faq from '@/components/home/faq';
 import FeaturedProjects from '@/components/home/featured-projects';
@@ -23,8 +22,6 @@ const Page = () => {
             <ParallaxBand />
 
             <FeaturedProjects />
-
-            <AboutIntro />
 
             <WaterServices />
 
