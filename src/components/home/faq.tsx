@@ -17,7 +17,7 @@ const FAQS = [
     },
     {
         q: 'What are hard shoreline solutions?',
-        a: 'Hard solutions use durable materials — armour stone, boulders, seawalls and breakwalls — to create a robust barrier against erosion. They are ideal for high-energy shorelines exposed to strong waves, ice and boat traffic.'
+        a: 'Hard solutions use durable materials such as armour stone, boulders, seawalls and breakwalls to create a robust barrier against erosion. They are ideal for high-energy shorelines exposed to strong waves, ice and boat traffic.'
     },
     {
         q: 'What are soft shoreline solutions?',
@@ -25,7 +25,7 @@ const FAQS = [
     },
     {
         q: 'What is your approach to sustainability?',
-        a: 'Our commitment to sustainability is simple — work with Mother Nature, not against her. We use permeable paving, native planting designs and best-practice water management, an approach recognized with the Green Stamp Award.'
+        a: 'Our commitment to sustainability is simple: work with Mother Nature, not against her. We use permeable paving, native planting designs and best-practice water management, an approach recognized with the Green Stamp Award.'
     },
     {
         q: 'What services do you offer?',
@@ -37,7 +37,7 @@ const FAQS = [
     },
     {
         q: 'Do you offer free estimates?',
-        a: 'Yes — reach out through our contact page or give one of our offices a call and we’ll be happy to arrange an estimate for your project.'
+        a: 'Yes. Reach out through our contact page or give one of our offices a call and we’ll be happy to arrange an estimate for your project.'
     }
 ];
 
@@ -46,12 +46,9 @@ const Faq = () => {
         <section className='bg-secondary/40 border-border/60 border-y'>
             <div className='mx-auto grid max-w-7xl gap-12 px-5 py-20 sm:px-8 sm:py-28 lg:grid-cols-12'>
                 <div className='lg:col-span-4'>
-                    <Reveal variant='left' className='text-muted-foreground text-xs font-medium tracking-[0.2em] uppercase'>
-                        FAQ
-                    </Reveal>
-                    <Reveal variant='blur' delay={80}>
-                        <h2 className='font-display text-foreground mt-4 text-4xl leading-[1.08] font-light tracking-tight sm:text-5xl'>
-                            Frequently Asked <span className='text-primary italic'>Questions</span>
+                    <Reveal variant='blur'>
+                        <h2 className='font-display text-foreground text-4xl leading-[1.08] font-light tracking-tight sm:text-5xl'>
+                            Questions, <span className='text-primary italic'>answered</span>
                         </h2>
                     </Reveal>
                     <Reveal delay={160}>

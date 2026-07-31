@@ -1,6 +1,6 @@
 import PageHero from '@/components/page-hero';
 
-export const metadata = { title: 'Contact — Pritty Landscapes' };
+export const metadata = { title: 'Contact | Pritty Landscapes' };
 
 const OFFICES = [
     { name: 'Markham Office', address: '675 Cochrane Drive, Suite 600-E, Markham ON L3R 0B8', phone: '(416) 722-0210' },
@@ -10,7 +10,6 @@ const OFFICES = [
 const ContactPage = () => (
     <>
         <PageHero
-            eyebrow='Contact'
             title='Let’s start your journey.'
             description='Reach out to schedule a consultation. We offer free estimates and would love to hear about your project.'
         />

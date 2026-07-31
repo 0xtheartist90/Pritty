@@ -299,6 +299,57 @@
     transform: scale(1);
   }
 
+  /* Word-stagger text reveal — each word rises out of its own clipping line,
+     the signature typographic entrance of high-end studio sites. */
+  .tr-w {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: bottom;
+    padding-bottom: 0.08em;
+    margin-bottom: -0.08em;
+  }
+  .tr-w > span {
+    display: inline-block;
+    transform: translateY(120%);
+    transition: transform 1.1s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform;
+  }
+  .tr.is-visible .tr-w > span {
+    transform: none;
+  }
+
+  /* Infinite marquee — track holds two identical copies, shifts one copy-width. */
+  .marquee-track {
+    animation: marquee var(--marquee-duration, 36s) linear infinite;
+    will-change: transform;
+  }
+  @keyframes marquee {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  /* Editorial link — hairline underline sweeps in from the left, exits right. */
+  .link-line {
+    position: relative;
+  }
+  .link-line::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    height: 1px;
+    width: 100%;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .link-line:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .rv,
     .rv-mask,
@@ -313,5 +364,37 @@
     .reveal-media::after {
       display: none;
     }
+    .tr-w > span {
+      transition: none;
+      transform: none;
+    }
+    .marquee-track {
+      animation: none;
+    }
+  }
+}
+
+/* Lenis smooth scrolling (see components/smooth-scroll.tsx). */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* Footer curtain reveal — the page scrolls up over a pinned footer. Only on
+   viewports tall enough to show the whole footer; elsewhere it stays static. */
+@media (min-width: 64rem) and (min-height: 56.25rem) {
+  .footer-reveal {
+    position: sticky;
+    bottom: 0;
+    z-index: 0;
   }
 }

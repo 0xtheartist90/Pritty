@@ -1,67 +1,60 @@
 import Link from 'next/link';
 
 import Reveal from '@/components/reveal';
-import { Button } from '@/registry/new-york-v4/ui/button';
 
-import { ArrowUpRight, MapPin } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 
 const AREAS = ['Blue Mountain', 'Collingwood', 'Georgian Bay', 'Markham', 'Muskoka', 'Thornbury', 'Toronto'];
 
 /**
- * "Where We Work" — surfaces the service regions on the homepage and points to
- * the full Service Areas page.
+ * Where we work, as a full-width wall of oversized serif place names rather
+ * than a utilitarian link list.
  */
 const ServiceAreasSection = () => {
     return (
         <section className='bg-secondary/40 border-border/60 border-y'>
-            <div className='mx-auto grid max-w-7xl gap-12 px-5 py-24 sm:px-8 sm:py-32 lg:grid-cols-12 lg:gap-20'>
-                <div className='lg:col-span-5'>
-                    <Reveal variant='left' className='text-muted-foreground flex items-center gap-3 text-xs font-medium tracking-[0.2em] uppercase'>
-                        <span className='bg-primary h-px w-8' />
-                        Where We Work
-                    </Reveal>
-                    <Reveal variant='blur' delay={80}>
-                        <h2 className='font-display text-foreground mt-5 text-4xl leading-[1.04] font-light tracking-tight sm:text-5xl'>
-                            Serving Southern Ontario’s <span className='text-primary italic'>finest waterfronts</span>
-                        </h2>
-                    </Reveal>
-                    <Reveal variant='up' delay={160}>
-                        <p className='text-muted-foreground mt-6 leading-relaxed'>
+            <div className='mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32'>
+                <div className='grid gap-8 lg:grid-cols-12 lg:items-end'>
+                    <div className='lg:col-span-7'>
+                        <Reveal variant='blur'>
+                            <h2 className='font-display text-foreground text-4xl leading-[1.04] font-light tracking-tight sm:text-5xl'>
+                                Serving Southern Ontario’s <span className='text-primary italic'>finest waterfronts</span>
+                            </h2>
+                        </Reveal>
+                    </div>
+                    <Reveal variant='up' delay={140} className='lg:col-span-5'>
+                        <p className='text-muted-foreground leading-relaxed'>
                             From the shores of Georgian Bay to the heart of the Greater Toronto Area, we bring naturally
-                            refined landscapes and award-winning shoreline protection to the places our clients call
-                            home.
+                            refined landscapes and shoreline protection to the places our clients call home.
                         </p>
-                    </Reveal>
-                    <Reveal variant='scale' delay={240}>
-                        <Button asChild className='mt-8'>
-                            <Link href='/service-areas'>
-                                Explore Service Areas <ArrowUpRight className='size-4' />
-                            </Link>
-                        </Button>
                     </Reveal>
                 </div>
 
-                <div className='lg:col-span-7'>
-                    <div className='grid grid-cols-1 sm:grid-cols-2'>
+                <div className='border-border/60 mt-16 border-y py-12 sm:py-16'>
+                    <div className='flex flex-wrap items-baseline gap-x-10 gap-y-8 sm:gap-x-14'>
                         {AREAS.map((area, i) => (
                             <Reveal key={area} variant='up' delay={i * 70}>
-                                <Link
-                                    href='/service-areas'
-                                    className='group border-border/60 hover:bg-background flex items-center justify-between border-b py-5 transition-colors'>
-                                    <span className='flex items-center gap-4'>
-                                        <span className='text-muted-foreground/60 font-mono text-xs tracking-widest'>
-                                            0{i + 1}
-                                        </span>
-                                        <span className='font-display text-foreground text-2xl font-normal'>
-                                            {area}
-                                        </span>
+                                <Link href='/service-areas' className='group flex items-start gap-2.5'>
+                                    <span className='text-muted-foreground/50 pt-1.5 font-mono text-[10px] tracking-widest'>
+                                        0{i + 1}
                                     </span>
-                                    <MapPin className='text-muted-foreground/40 group-hover:text-primary size-4 transition-colors' />
+                                    <span className='link-line font-display text-foreground/60 group-hover:text-primary text-4xl leading-none font-light tracking-tight transition-colors duration-500 sm:text-5xl lg:text-6xl'>
+                                        {area}
+                                    </span>
                                 </Link>
                             </Reveal>
                         ))}
                     </div>
                 </div>
+
+                <Reveal variant='up' delay={140}>
+                    <Link
+                        href='/service-areas'
+                        className='group text-foreground mt-10 inline-flex items-center gap-2 text-sm'>
+                        <span className='link-line'>See every region we serve</span>
+                        <ArrowUpRight className='size-4 transition-transform duration-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5' />
+                    </Link>
+                </Reveal>
             </div>
         </section>
     );

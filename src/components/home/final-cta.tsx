@@ -18,12 +18,8 @@ const FinalCta = () => {
 
             <div className='relative z-10 mx-auto w-full max-w-7xl px-5 sm:px-8'>
                 <div className='max-w-2xl'>
-                    <Reveal variant='left' className='flex items-center gap-3 text-xs font-medium tracking-[0.22em] text-white/70 uppercase'>
-                        <span className='h-px w-10 bg-white/40' />
-                        Let’s Begin
-                    </Reveal>
                     <Reveal variant='blur' delay={120}>
-                        <h2 className='font-display mt-6 text-5xl leading-[1.02] font-light tracking-tight text-white sm:text-7xl'>
+                        <h2 className='font-display text-5xl leading-[1.02] font-light tracking-tight text-white sm:text-7xl'>
                             Your Dream Landscape <span className='italic'>Starts Here</span>
                         </h2>
                     </Reveal>

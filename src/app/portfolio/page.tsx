@@ -1,10 +1,9 @@
 import PageHero from '@/components/page-hero';
 
-export const metadata = { title: 'Portfolio — Pritty Landscapes' };
+export const metadata = { title: 'Portfolio | Pritty Landscapes' };
 
 const PortfolioPage = () => (
     <PageHero
-        eyebrow='Portfolio'
         title='Award-winning design and build.'
         description='A showcase of our bespoke landscapes, gardens and shoreline projects across Southern Ontario. This page is coming soon.'
     />

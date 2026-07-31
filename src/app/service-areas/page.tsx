@@ -1,13 +1,12 @@
 import PageHero from '@/components/page-hero';
 
-export const metadata = { title: 'Service Areas — Pritty Landscapes' };
+export const metadata = { title: 'Service Areas | Pritty Landscapes' };
 
 const AREAS = ['Blue Mountain', 'Collingwood', 'Georgian Bay', 'Markham', 'Muskoka', 'Thornbury', 'Toronto'];
 
 const ServiceAreasPage = () => (
     <>
         <PageHero
-            eyebrow='Service Areas'
             title='Serving Southern Ontario’s waterfront.'
             description='From Georgian Bay to the Greater Toronto Area, we bring naturally refined landscapes and shoreline protection to the places our clients call home.'
         />

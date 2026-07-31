@@ -44,7 +44,7 @@ const COVER_STYLE: Record<string, string> = {
     height: '56.25vw',
     minHeight: '100svh',
     minWidth: '177.78svh',
-    transform: 'translate(-50%, -50%) scale(1.35)',
+    transform: 'translate(-50%, -50%) scale(1.5)',
     border: '0',
     pointerEvents: 'none',
     opacity: '0',
@@ -89,6 +89,10 @@ const BgVideo = ({ videoId, poster, posterAlt = '', start = 0 }: BgVideoProps) =
                     rel: 0,
                     playsinline: 1,
                     iv_load_policy: 3,
+                    // Native loop (with playlist) restarts without an ENDED state
+                    // change, so YouTube never flashes its play/pause overlay.
+                    loop: 1,
+                    playlist: videoId,
                     start
                 },
                 events: {

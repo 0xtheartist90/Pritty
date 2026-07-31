@@ -18,14 +18,14 @@ const SiteLogo = ({ className, variant = 'dark' }: SiteLogoProps) => {
         <Link
             href='/'
             className={cn('flex items-center gap-2.5', className)}
-            aria-label='Pritty Landscapes — home'>
+            aria-label='Pritty Landscapes home'>
             <Image
                 src={variant === 'light' ? '/pritty-logo-white.png' : '/pritty-logo-dark.png'}
                 alt='Pritty Landscapes'
                 width={220}
                 height={44}
                 priority
-                className='h-9 w-auto'
+                className='h-7 w-auto'
             />
         </Link>
     );

@@ -7,9 +7,8 @@ import Link from 'next/link';
 
 import Reveal from '@/components/reveal';
 import { cn } from '@/lib/utils';
-import { Button } from '@/registry/new-york-v4/ui/button';
 
-import { ArrowLeft, ArrowRight, ArrowUpRight, MapPin } from 'lucide-react';
+import { ArrowLeft, ArrowRight, ArrowUpRight } from 'lucide-react';
 
 const PROJECTS = [
     {
@@ -19,7 +18,7 @@ const PROJECTS = [
         accent: 'Restoration',
         scope: 'Shoreline Protection · Armour Stone',
         image: { src: '/gallery/shoreline.webp', alt: 'Aerial view of a restored Georgian Bay shoreline' },
-        body: 'A weathered, eroding shoreline rebuilt with hand-placed armour stone and native plantings — restoring both structural stability and a natural water’s edge that withstands ice, wave uprush and rising water levels.'
+        body: 'A weathered, eroding shoreline rebuilt with hand-placed armour stone and native plantings, restoring both structural stability and a natural water’s edge that stands up to ice, wave uprush and rising water.'
     },
     {
         index: '02',
@@ -28,7 +27,7 @@ const PROJECTS = [
         accent: 'Landscape',
         scope: 'Landscape Architecture · Stonework',
         image: { src: '/gallery/design-patio.webp', alt: 'Lakeside stone patio with gardens at golden hour' },
-        body: 'A sweeping lakeside terrace of natural stone, layered gardens and quiet gathering spaces — designed to draw the eye toward the water at every turn, with sustainable, permeable materials throughout.'
+        body: 'A sweeping lakeside terrace of natural stone, layered gardens and quiet gathering spaces, designed to draw the eye toward the water at every turn, with sustainable, permeable materials throughout.'
     },
     {
         index: '03',
@@ -37,7 +36,7 @@ const PROJECTS = [
         accent: 'Design & Build',
         scope: 'Design · 3D Rendering · Build',
         image: { src: '/gallery/waterfall.webp', alt: 'Custom water feature set amongst ferns and forest' },
-        body: 'From hand-drawn concept to Dynascape 3D rendering to finished build — a bespoke water feature and woodland garden delivered end to end, planned to feel effortless and entirely at home in its surroundings.'
+        body: 'From hand-drawn concept to Dynascape 3D rendering to finished build. A bespoke water feature and woodland garden delivered end to end, planned to feel effortless and entirely at home in its surroundings.'
     }
 ];
 
@@ -70,68 +69,62 @@ const FeaturedProjects = () => {
             <div className='mx-auto w-full max-w-7xl px-5 sm:px-8'>
                 {/* Header */}
                 <div className='flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between'>
-                    <div>
-                        <Reveal
-                            variant='left'
-                            className='text-muted-foreground flex items-center gap-3 text-xs font-medium tracking-[0.2em] uppercase'>
-                            <span className='bg-primary h-px w-8' />
-                            Selected Work
-                        </Reveal>
-                        <Reveal variant='blur' delay={80}>
-                            <h2 className='font-display text-foreground mt-5 text-4xl leading-[1.04] font-light tracking-tight sm:text-5xl lg:text-6xl'>
-                                Recent Waterfront <span className='text-primary italic'>Transformations</span>
-                            </h2>
-                        </Reveal>
-                    </div>
-                    <Reveal variant='scale' delay={160}>
-                        <Link
-                            href='/portfolio'
-                            className='group text-foreground inline-flex items-center gap-2 text-sm font-medium tracking-wide uppercase'>
-                            View All Projects
-                            <ArrowUpRight className='size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5' />
+                    <Reveal variant='blur'>
+                        <h2 className='font-display text-foreground text-4xl leading-[1.04] font-light tracking-tight sm:text-5xl lg:text-6xl'>
+                            Selected <span className='text-primary italic'>work</span>
+                        </h2>
+                    </Reveal>
+                    <Reveal variant='up' delay={160}>
+                        <Link href='/portfolio' className='group text-foreground inline-flex items-center gap-2 text-sm'>
+                            <span className='link-line'>View all projects</span>
+                            <ArrowUpRight className='size-4 transition-transform duration-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5' />
                         </Link>
                     </Reveal>
                 </div>
 
-                {/* Showcase */}
-                <div className='mt-12 grid items-center gap-10 lg:grid-cols-12 lg:gap-16'>
+                {/* Showcase — image bleeds wide, details panel overlaps it */}
+                <div className='mt-12 grid items-center gap-10 lg:grid-cols-12 lg:gap-0'>
                     {/* Image stack (cross-fade) */}
-                    <Reveal variant='media' className='relative aspect-[16/11] overflow-hidden lg:col-span-7'>
+                    <Reveal
+                        variant='media'
+                        className='relative aspect-[16/11] overflow-hidden lg:col-start-1 lg:col-end-9 lg:row-start-1'>
                         {PROJECTS.map((p, i) => (
                             <Image
                                 key={p.index}
                                 src={p.image.src}
                                 alt={p.image.alt}
                                 fill
-                                sizes='(max-width: 1024px) 100vw, 58vw'
+                                sizes='(max-width: 1024px) 100vw, 66vw'
                                 className={cn(
                                     'object-cover transition-all duration-[1.1s] ease-out',
                                     i === active ? 'scale-100 opacity-100' : 'scale-105 opacity-0'
                                 )}
                             />
                         ))}
-                        <div className='absolute bottom-5 left-5 flex items-center gap-2 bg-[#0e1a13]/55 px-4 py-2 text-xs font-medium tracking-wide text-white backdrop-blur-sm'>
-                            <span className='bg-primary size-1.5 rounded-full' />
-                            {project.scope}
-                        </div>
                     </Reveal>
 
                     {/* Details (re-keyed for a soft transition per project) */}
-                    <div className='lg:col-span-5'>
-                        <div key={active} className='project-detail'>
-                            <div className='text-muted-foreground flex items-center gap-2 text-xs font-medium tracking-[0.2em] uppercase'>
-                                <MapPin className='text-primary size-4' />
-                                {project.location}
-                            </div>
-                            <h3 className='font-display text-foreground mt-5 text-4xl leading-[1.04] font-light tracking-tight sm:text-5xl'>
+                    <div className='relative z-10 lg:col-start-8 lg:col-end-13 lg:row-start-1'>
+                        <div key={active} className='project-detail bg-background relative lg:p-10'>
+                            <span
+                                aria-hidden
+                                className='font-display text-primary/10 pointer-events-none absolute -top-4 right-0 text-8xl leading-none font-light select-none lg:top-4 lg:right-6'>
+                                {project.index}
+                            </span>
+                            <p className='font-display text-muted-foreground text-lg italic'>{project.location}</p>
+                            <h3 className='font-display text-foreground mt-3 text-4xl leading-[1.04] font-light tracking-tight sm:text-5xl'>
                                 {project.title} <span className='text-primary italic'>{project.accent}</span>
                             </h3>
-                            <p className='text-muted-foreground mt-6 leading-relaxed'>{project.body}</p>
-                            <Button asChild variant='link' className='text-foreground mt-6 h-auto p-0 text-sm tracking-wide uppercase'>
-                                <Link href='/portfolio'>
-                                    View Project <ArrowUpRight className='size-4' />
-                                </Link>
-                            </Button>
+                            <p className='text-muted-foreground/80 mt-4 font-mono text-xs tracking-wide'>
+                                {project.scope}
+                            </p>
+                            <p className='text-muted-foreground mt-5 leading-relaxed'>{project.body}</p>
+                            <Link
+                                href='/portfolio'
+                                className='group text-foreground mt-6 inline-flex items-center gap-2 text-sm'>
+                                <span className='link-line'>View project</span>
+                                <ArrowUpRight className='size-4 transition-transform duration-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5' />
+                            </Link>
                         </div>
                     </div>
                 </div>

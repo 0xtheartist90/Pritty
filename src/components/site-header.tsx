@@ -23,10 +23,20 @@ export const NAV_LINKS = [
 const SiteHeader = () => {
     const pathname = usePathname();
     const [scrolled, setScrolled] = useState(false);
+    const [hidden, setHidden] = useState(false);
     const [open, setOpen] = useState(false);
 
     useEffect(() => {
-        const onScroll = () => setScrolled(window.scrollY > 24);
+        let lastY = window.scrollY;
+
+        // Hide when scrolling down past the hero, reappear on any upward scroll.
+        const onScroll = () => {
+            const y = window.scrollY;
+            setScrolled(y > 24);
+            if (y > 160 && y > lastY + 4) setHidden(true);
+            else if (y < lastY - 4 || y <= 160) setHidden(false);
+            lastY = y;
+        };
         onScroll();
         window.addEventListener('scroll', onScroll, { passive: true });
 
@@ -43,18 +53,19 @@ const SiteHeader = () => {
         <header
             className={cn(
                 'fixed top-0 z-50 w-full transition-all duration-500',
-                overHero ? 'bg-transparent py-2' : 'bg-background/80 border-border/60 border-b backdrop-blur-xl'
+                overHero ? 'bg-transparent py-1.5' : 'bg-background/80 border-border/40 border-b backdrop-blur-xl',
+                hidden && !open && '-translate-y-full'
             )}>
-            <div className='mx-auto flex h-18 max-w-7xl items-center justify-between gap-6 px-5 sm:px-8'>
+            <div className='flex h-14 w-full items-center justify-between gap-6 px-5 sm:px-8 lg:px-10'>
                 <SiteLogo variant={overHero ? 'light' : 'dark'} />
 
-                <nav className='hidden items-center gap-9 md:flex'>
+                <nav className='hidden items-center gap-8 md:flex'>
                     {NAV_LINKS.map((link) => (
                         <Link
                             key={link.href}
                             href={link.href}
                             className={cn(
-                                'group relative text-sm tracking-wide transition-colors',
+                                'group relative text-[13px] tracking-wide transition-colors',
                                 overHero
                                     ? 'text-white/80 hover:text-white'
                                     : isActive(link.href)
@@ -64,7 +75,7 @@ const SiteHeader = () => {
                             {link.label}
                             <span
                                 className={cn(
-                                    'absolute -bottom-1.5 left-0 h-px transition-all duration-300',
+                                    'absolute -bottom-1 left-0 h-px transition-all duration-300',
                                     overHero ? 'bg-white' : 'bg-primary',
                                     isActive(link.href) ? 'w-full' : 'w-0 group-hover:w-full'
                                 )}
@@ -74,14 +85,16 @@ const SiteHeader = () => {
                 </nav>
 
                 <div className='flex items-center gap-2'>
-                    <Button
-                        asChild
+                    <Link
+                        href='/contact'
                         className={cn(
-                            'hidden rounded-full px-5 transition-colors sm:inline-flex',
-                            overHero && 'bg-white text-foreground hover:bg-white/90'
+                            'hidden items-center gap-1.5 rounded-full border px-4 py-1.5 text-[13px] transition-colors duration-500 sm:inline-flex',
+                            overHero
+                                ? 'border-white/40 text-white hover:bg-white hover:text-[#16241b]'
+                                : 'border-foreground/25 text-foreground hover:bg-foreground hover:text-background'
                         )}>
-                        <Link href='/contact'>Book a Consultation</Link>
-                    </Button>
+                        Book a consultation
+                    </Link>
 
                     <Sheet open={open} onOpenChange={setOpen}>
                         <SheetTrigger asChild>

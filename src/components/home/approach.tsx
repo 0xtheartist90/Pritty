@@ -2,99 +2,97 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import Reveal from '@/components/reveal';
+import { DesignIcon, LandscapesIcon, ShorelinesIcon } from '@/components/home/service-icons';
 
-import { ArrowUpRight, Compass, Trees, Waves } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 
 const SERVICES = [
     {
-        index: '01',
-        icon: Trees,
+        icon: LandscapesIcon,
         title: 'Landscapes',
-        body: 'We prioritize beauty and sustainability to achieve award-winning results. Find new inspiration today.',
+        accent: 'rooted in place',
+        body: 'Beauty and sustainability, held to an award-winning standard. Gardens, stonework and outdoor rooms that feel like they have always belonged to the land.',
         image: '/gallery/card-landscapes.webp',
         alt: 'Natural stone patio surrounded by gardens'
     },
     {
-        index: '02',
-        icon: Compass,
+        icon: DesignIcon,
         title: 'Design',
-        body: 'Naturally refined landscape architecture. We handle the design, permits, and planning of your dream project.',
+        accent: 'from first sketch',
+        body: 'Naturally refined landscape architecture. We carry the design, permits and planning of your project from the first drawing to the final stone.',
         image: '/gallery/card-design.webp',
         alt: 'Aerial view of a landscaped waterfront garden'
     },
     {
-        index: '03',
-        icon: Waves,
+        icon: ShorelinesIcon,
         title: 'Shorelines',
-        body: "Discover why we are Southern Ontario's only award-winning shoreline contractor. A distinctively different approach.",
+        accent: 'built for water',
+        body: "Southern Ontario's only award-winning shoreline contractor. Armour stone, breakwalls and living edges that hold their ground against ice and wave.",
         image: '/gallery/card-shorelines.webp',
         alt: 'Granite steps leading down to a waterfront dock'
     }
 ];
 
+/**
+ * What we offer, as a stacking scroll sequence: each service is a full-viewport
+ * panel that pins to the top while the next one slides up and covers it.
+ */
 const Approach = () => {
     return (
         <section className='bg-secondary/40 border-border/60 border-y'>
-            <div className='mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32'>
-                {/* Editorial header */}
-                <div className='grid items-end gap-8 lg:grid-cols-12'>
-                    <div className='lg:col-span-7'>
-                        <Reveal variant='left' className='text-muted-foreground flex items-center gap-3 text-xs font-medium tracking-[0.2em] uppercase'>
-                            <span className='bg-primary h-px w-8' />
-                            What We Offer
-                        </Reveal>
-                        <Reveal variant='blur' delay={80}>
-                            <h2 className='font-display text-foreground mt-5 text-4xl leading-[1.04] font-light tracking-tight sm:text-5xl lg:text-6xl'>
-                                A Distinctively <span className='text-primary italic'>Different</span> Approach
+            <div className='mx-auto max-w-7xl px-5 pt-24 pb-16 sm:px-8 sm:pt-32 sm:pb-20'>
+                <div className='grid gap-8 lg:grid-cols-12 lg:items-end'>
+                    <div className='lg:col-span-8'>
+                        <Reveal variant='blur'>
+                            <h2 className='font-display text-foreground text-4xl leading-[1.04] font-light tracking-tight sm:text-5xl lg:text-6xl'>
+                                A distinctively <span className='text-primary italic'>different</span> approach
                             </h2>
                         </Reveal>
                     </div>
-                    <Reveal variant='right' delay={160} className='lg:col-span-5 lg:pb-2'>
+                    <Reveal variant='up' delay={140} className='lg:col-span-4'>
                         <p className='text-muted-foreground leading-relaxed'>
-                            Multi-disciplinary architectural design, landscaping, and shoreline contracting — crafted
-                            with your specific needs in mind. We blend natural elements with organic materials to create
-                            sustainable outdoor living spaces inspired by water.
+                            Architecture, landscaping and shoreline contracting under one roof. Natural elements and
+                            organic materials, shaped into outdoor living spaces inspired by water.
                         </p>
                     </Reveal>
                 </div>
-
-                {/* Cards */}
-                <div className='mt-16 grid gap-6 md:grid-cols-3'>
-                    {SERVICES.map(({ index, icon: Icon, title, body, image, alt }, i) => (
-                        <Reveal key={title} variant='scale' delay={i * 140}>
-                            <Link href='/portfolio' className='group block'>
-                                {/* Image with overlaid index + title */}
-                                <div className='relative aspect-[4/5] overflow-hidden'>
-                                    <Image
-                                        src={image}
-                                        alt={alt}
-                                        fill
-                                        sizes='(max-width: 768px) 100vw, 33vw'
-                                        className='object-cover transition-transform duration-[1.3s] ease-out group-hover:scale-105'
-                                    />
-                                    <div className='from-foreground/85 absolute inset-0 bg-gradient-to-t via-transparent to-transparent' />
-                                    <span className='absolute top-5 left-5 font-mono text-xs tracking-[0.2em] text-white/70'>
-                                        / {index}
-                                    </span>
-                                    <div className='absolute right-5 bottom-5 left-5 flex items-end justify-between'>
-                                        <div className='flex items-center gap-3'>
-                                            <Icon className='size-6 text-white' />
-                                            <h3 className='font-display text-3xl font-normal text-white'>{title}</h3>
-                                        </div>
-                                        <span className='flex size-10 items-center justify-center border border-white/30 text-white transition-colors duration-500 group-hover:bg-white group-hover:text-[#16241b]'>
-                                            <ArrowUpRight className='size-4' />
-                                        </span>
-                                    </div>
-                                </div>
-                                {/* Body */}
-                                <div className='border-border/60 border-t pt-5'>
-                                    <p className='text-muted-foreground text-sm leading-relaxed'>{body}</p>
-                                </div>
-                            </Link>
-                        </Reveal>
-                    ))}
-                </div>
             </div>
+
+            {SERVICES.map(({ icon: Icon, title, accent, body, image, alt }, i) => (
+                <div key={title} className='sticky top-0'>
+                    <div className='relative flex min-h-[100svh] items-start overflow-hidden'>
+                        <Image
+                            src={image}
+                            alt={alt}
+                            fill
+                            sizes='100vw'
+                            className='object-cover'
+                            priority={i === 0}
+                        />
+                        <div className='absolute inset-0 bg-[#0e1a13]/35' />
+                        <div className='from-[#0e1a13]/95 absolute inset-0 bg-gradient-to-b via-[#0e1a13]/30 to-[#0e1a13]/20' />
+
+                        <div className='relative z-10 w-full px-5 pt-28 sm:px-8 sm:pt-32 lg:px-10'>
+                            <Reveal variant='up' className='max-w-2xl'>
+                                <Icon className='size-14 text-white/85 sm:size-16' />
+                                <h3 className='font-display mt-6 text-5xl leading-[0.98] font-light tracking-tight text-white sm:text-7xl'>
+                                    {title}
+                                    <span className='mt-2 block text-2xl text-white/70 italic sm:text-4xl'>
+                                        {accent}
+                                    </span>
+                                </h3>
+                                <p className='mt-6 max-w-md leading-relaxed text-white/75'>{body}</p>
+                                <Link
+                                    href='/portfolio'
+                                    className='group mt-8 inline-flex items-center gap-2 text-sm text-white'>
+                                    <span className='link-line'>Explore {title.toLowerCase()}</span>
+                                    <ArrowUpRight className='size-4 transition-transform duration-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5' />
+                                </Link>
+                            </Reveal>
+                        </div>
+                    </div>
+                </div>
+            ))}
         </section>
     );
 };
