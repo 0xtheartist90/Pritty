@@ -6,9 +6,11 @@ import Hero from '@/components/home/hero';
 import MarqueeBand from '@/components/home/marquee-band';
 import ParallaxBand from '@/components/home/parallax-band';
 import PhotoBanner from '@/components/home/photo-banner';
+import Process from '@/components/home/process';
 import Proof from '@/components/home/proof';
 import ServiceAreasSection from '@/components/home/service-areas-section';
 import Statement from '@/components/home/statement';
+import VideoBanner from '@/components/home/video-banner';
 import WaterServices from '@/components/home/water-services';
 
 /**
@@ -30,6 +32,10 @@ const Page = () => {
             <MarqueeBand />
 
             <WaterServices />
+
+            <VideoBanner />
+
+            <Process />
 
             <ServiceAreasSection />
 

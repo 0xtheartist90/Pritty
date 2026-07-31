@@ -19,10 +19,14 @@ const STATS = [
 ];
 
 const Hero = () => {
-    const [index, setIndex] = useState(0);
+    const [word, setWord] = useState<{ index: number; prev: number | null }>({ index: 0, prev: null });
+    const { index, prev } = word;
 
     useEffect(() => {
-        const id = setInterval(() => setIndex((i) => (i + 1) % WORDS.length), 2800);
+        const id = setInterval(
+            () => setWord((w) => ({ index: (w.index + 1) % WORDS.length, prev: w.index })),
+            3400
+        );
 
         return () => clearInterval(id);
     }, []);
@@ -36,24 +40,25 @@ const Hero = () => {
 
             <div className='relative z-10 flex h-full w-full flex-col justify-end px-5 pt-28 pb-10 sm:px-8 sm:pb-14 lg:px-10'>
                 <Reveal variant='blur' delay={140}>
-                    <h1 className='font-display mt-6 text-5xl leading-[0.92] font-light tracking-tight text-white sm:text-7xl lg:text-8xl xl:text-9xl'>
+                    <h1 className='font-editorial mt-6 text-5xl leading-[0.92] tracking-tight text-white sm:text-6xl lg:text-7xl xl:text-8xl'>
                         <span className='block'>Transform Your</span>
-                        <span className='mt-1 block overflow-hidden pb-2'>
-                            <span key={index} className='hero-word inline-block italic'>
+                        <span className='relative mt-1 block overflow-hidden pb-2'>
+                            {prev !== null && (
+                                <span
+                                    key={`out-${prev}`}
+                                    aria-hidden
+                                    className='hero-word-out font-display absolute top-0 left-0 inline-block font-light italic'>
+                                    {WORDS[prev]}
+                                </span>
+                            )}
+                            <span key={index} className='hero-word-in font-display inline-block font-light italic'>
                                 {WORDS[index]}
                             </span>
                         </span>
                     </h1>
                 </Reveal>
 
-                <Reveal variant='up' delay={360} className='mt-7 max-w-xl'>
-                    <p className='text-base leading-relaxed text-white/80 sm:text-lg'>
-                        Naturally refined landscapes and shoreline protection, inspired by water. We craft bespoke
-                        outdoor spaces that connect you with nature, built to last a lifetime.
-                    </p>
-                </Reveal>
-
-                <Reveal variant='scale' delay={460} className='mt-9 flex flex-wrap items-center gap-4'>
+                <Reveal variant='scale' delay={360} className='mt-9 flex flex-wrap items-center gap-4'>
                     <Button asChild size='lg' className='rounded-full bg-white px-7 text-[#16241b] hover:bg-white/90'>
                         <Link href='/contact'>
                             Book a Consultation <ArrowUpRight className='size-4' />
@@ -74,7 +79,7 @@ const Hero = () => {
                     <dl className='flex flex-wrap gap-x-10 gap-y-4'>
                         {STATS.map((stat) => (
                             <div key={stat.label}>
-                                <dt className='font-display text-3xl font-light text-white sm:text-4xl'>
+                                <dt className='font-display text-2xl font-light text-white sm:text-3xl'>
                                     {stat.value}
                                 </dt>
                                 <dd className='mt-1 text-xs tracking-wide text-white/60 uppercase'>{stat.label}</dd>
@@ -93,13 +98,21 @@ const Hero = () => {
                     from { transform: scale(1.08); }
                     to { transform: scale(1); }
                 }
-                .hero-word { animation: wordRise 0.7s cubic-bezier(0.16, 1, 0.3, 1); }
-                @keyframes wordRise {
-                    from { opacity: 0; transform: translateY(0.5em); }
-                    to { opacity: 1; transform: translateY(0); }
+                /* Word swap: outgoing drifts up and softens while the incoming
+                   rises from below — both on a long, gentle ease. */
+                .hero-word-in { animation: wordIn 1.2s cubic-bezier(0.22, 1, 0.36, 1) both; }
+                .hero-word-out { animation: wordOut 1.2s cubic-bezier(0.22, 1, 0.36, 1) both; }
+                @keyframes wordIn {
+                    from { opacity: 0; transform: translateY(65%); filter: blur(8px); }
+                    to { opacity: 1; transform: translateY(0); filter: blur(0); }
+                }
+                @keyframes wordOut {
+                    from { opacity: 1; transform: translateY(0); filter: blur(0); }
+                    to { opacity: 0; transform: translateY(-55%); filter: blur(8px); }
                 }
                 @media (prefers-reduced-motion: reduce) {
-                    .hero-img, .hero-word { animation: none; }
+                    .hero-img, .hero-word-in, .hero-word-out { animation: none; }
+                    .hero-word-out { opacity: 0; }
                 }
             `}</style>
         </section>

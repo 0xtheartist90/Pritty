@@ -19,17 +19,11 @@ const FinalCta = () => {
             <div className='relative z-10 mx-auto w-full max-w-7xl px-5 sm:px-8'>
                 <div className='max-w-2xl'>
                     <Reveal variant='blur' delay={120}>
-                        <h2 className='font-display text-5xl leading-[1.02] font-light tracking-tight text-white sm:text-7xl'>
-                            Your Dream Landscape <span className='italic'>Starts Here</span>
+                        <h2 className='font-editorial text-4xl leading-[1.02] tracking-tight text-white sm:text-5xl lg:text-7xl'>
+                            Your Dream Landscape <span className='font-display font-light italic'>Starts Here</span>
                         </h2>
                     </Reveal>
-                    <Reveal variant='up' delay={240}>
-                        <p className='mt-6 max-w-md text-lg leading-relaxed text-white/80'>
-                            Contact us today to schedule a consultation and start your journey toward a naturally
-                            refined outdoor space, inspired by water.
-                        </p>
-                    </Reveal>
-                    <Reveal variant='scale' delay={360} className='mt-9 flex flex-wrap items-center gap-4'>
+                    <Reveal variant='scale' delay={280} className='mt-9 flex flex-wrap items-center gap-4'>
                         <Button asChild size='lg' className='rounded-full bg-white px-7 text-[#16241b] hover:bg-white/90'>
                             <Link href='/contact'>
                                 Book a Consultation <ArrowUpRight className='size-4' />

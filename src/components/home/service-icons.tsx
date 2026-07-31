@@ -38,3 +38,31 @@ export const ShorelinesIcon = (props: IconProps) => (
         <path d='M4 42c4-4 8-4 12 0s8 4 12 0 8-4 12 0 8 4 12 0 8-4 12 0' />
     </svg>
 );
+
+/** Dredge bucket lifting below a water line. */
+export const DredgingIcon = (props: IconProps) => (
+    <svg {...base} {...props}>
+        <path d='M4 20c4-4 8-4 12 0s8 4 12 0 8-4 12 0 8 4 12 0 8-4 12 0' />
+        <path d='M32 20v12' />
+        <path d='M24 32h16l-2.5 12c-.5 2.5-2.5 4-5.5 4s-5-1.5-5.5-4Z' />
+    </svg>
+);
+
+/** Barge hull riding a wave line. */
+export const BargingIcon = (props: IconProps) => (
+    <svg {...base} {...props}>
+        <path d='M12 34h40l-6 10H18Z' />
+        <path d='M26 34v-7h12v7' />
+        <path d='M4 52c4-4 8-4 12 0s8 4 12 0 8-4 12 0 8 4 12 0 8-4 12 0' />
+    </svg>
+);
+
+/** Placed armour stones, stacked. */
+export const BuildingIcon = (props: IconProps) => (
+    <svg {...base} {...props}>
+        <path d='M22 30c2-5 7-8 12-6 5 1 8 5 7 10l-19-1c-.5-1-.5-2 0-3Z' />
+        <path d='M8 46c1-6 6-10 12-9 5 0 9 4 10 9Z' />
+        <path d='M34 46c1-5 5-9 11-9 5 0 9 4 10 9Z' />
+        <path d='M6 52h52' />
+    </svg>
+);

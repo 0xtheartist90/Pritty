@@ -17,8 +17,9 @@ const ServiceAreasSection = () => {
                 <div className='grid gap-8 lg:grid-cols-12 lg:items-end'>
                     <div className='lg:col-span-7'>
                         <Reveal variant='blur'>
-                            <h2 className='font-display text-foreground text-4xl leading-[1.04] font-light tracking-tight sm:text-5xl'>
-                                Serving Southern Ontario’s <span className='text-primary italic'>finest waterfronts</span>
+                            <h2 className='font-editorial text-foreground text-3xl leading-[1.04] tracking-tight sm:text-4xl lg:text-6xl'>
+                                Serving Southern Ontario’s{' '}
+                                <span className='font-display text-primary font-light italic'>finest waterfronts</span>
                             </h2>
                         </Reveal>
                     </div>
@@ -34,11 +35,8 @@ const ServiceAreasSection = () => {
                     <div className='flex flex-wrap items-baseline gap-x-10 gap-y-8 sm:gap-x-14'>
                         {AREAS.map((area, i) => (
                             <Reveal key={area} variant='up' delay={i * 70}>
-                                <Link href='/service-areas' className='group flex items-start gap-2.5'>
-                                    <span className='text-muted-foreground/50 pt-1.5 font-mono text-[10px] tracking-widest'>
-                                        0{i + 1}
-                                    </span>
-                                    <span className='link-line font-display text-foreground/60 group-hover:text-primary text-4xl leading-none font-light tracking-tight transition-colors duration-500 sm:text-5xl lg:text-6xl'>
+                                <Link href='/service-areas' className='group inline-block'>
+                                    <span className='link-line font-editorial text-foreground/60 group-hover:text-primary text-3xl leading-none tracking-tight transition-colors duration-500 sm:text-4xl lg:text-6xl'>
                                         {area}
                                     </span>
                                 </Link>

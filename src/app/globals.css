@@ -133,6 +133,7 @@
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --font-display: var(--font-fraunces);
+  --font-editorial: var(--font-archivo);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -305,8 +306,10 @@
     display: inline-block;
     overflow: hidden;
     vertical-align: bottom;
-    padding-bottom: 0.08em;
-    margin-bottom: -0.08em;
+    /* Padding + negative margin give tall serif caps and descenders room
+       inside the clip without affecting layout. */
+    padding: 0.15em 0 0.1em;
+    margin: -0.15em 0 -0.1em;
   }
   .tr-w > span {
     display: inline-block;
@@ -325,8 +328,17 @@
   }
   @keyframes marquee {
     to {
-      transform: translateX(-50%);
+      /* One copy of the four in the track. */
+      transform: translateX(-25%);
     }
+  }
+
+  /* Graph-paper grid — faint modular lines behind light sections. */
+  .grid-paper {
+    background-image:
+      linear-gradient(to right, color-mix(in oklab, var(--border) 60%, transparent) 1px, transparent 1px),
+      linear-gradient(to bottom, color-mix(in oklab, var(--border) 60%, transparent) 1px, transparent 1px);
+    background-size: 72px 72px;
   }
 
   /* Editorial link — hairline underline sweeps in from the left, exits right. */
@@ -389,12 +401,11 @@ html.lenis body {
   overflow: hidden;
 }
 
-/* Footer curtain reveal — the page scrolls up over a pinned footer. Only on
-   viewports tall enough to show the whole footer; elsewhere it stays static. */
-@media (min-width: 64rem) and (min-height: 56.25rem) {
-  .footer-reveal {
-    position: sticky;
-    bottom: 0;
-    z-index: 0;
-  }
+/* Footer curtain reveal — the page scrolls up over a pinned footer. The
+   .footer-reveal-on class is toggled by FooterRevealGuard, which measures that
+   the whole footer fits in the viewport (else the top would be clipped). */
+.footer-reveal-on {
+  position: sticky;
+  bottom: 0;
+  z-index: 0;
 }

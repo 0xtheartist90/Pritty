@@ -101,17 +101,36 @@ const BgVideo = ({ videoId, poster, posterAlt = '', start = 0 }: BgVideoProps) =
                         e.target.playVideo();
                     },
                     onStateChange: (e: any) => {
-                        // PLAYING — wait out YouTube's start-up overlay (the muted-autoplay
-                        // play/pause affordance) before revealing, so no chrome is ever seen.
-                        if (e.data === 1 && !revealed) {
+                        const iframe = e.target.getIframe?.();
+                        if (e.data === 1) {
+                            // PLAYING — reveal, waiting out YouTube's start-up overlay the
+                            // first time so no chrome is ever seen.
+                            window.clearTimeout(revealTimer);
+                            revealTimer = window.setTimeout(
+                                () => {
+                                    if (iframe) {
+                                        iframe.style.transition = 'opacity 0.8s ease';
+                                        iframe.style.opacity = '1';
+                                    }
+                                    setReady(true);
+                                },
+                                revealed ? 250 : 1200
+                            );
                             revealed = true;
-                            revealTimer = window.setTimeout(() => {
-                                const iframe = e.target.getIframe?.();
-                                if (iframe) iframe.style.opacity = '1';
-                                setReady(true);
-                            }, 1200);
+
+                            return;
                         }
-                        // ENDED — loop without a playlist (keeps prev/next chrome hidden).
+                        // Any non-playing state (paused, buffering, ended) can show
+                        // YouTube chrome — snap back to the poster instantly instead.
+                        window.clearTimeout(revealTimer);
+                        if (iframe) {
+                            iframe.style.transition = 'opacity 0.15s ease';
+                            iframe.style.opacity = '0';
+                        }
+                        setReady(false);
+                        // PAUSED — auto-resume so the background never stays frozen.
+                        if (e.data === 2) e.target.playVideo();
+                        // ENDED — fallback loop (native loop/playlist normally handles this).
                         if (e.data === 0) {
                             e.target.seekTo(start);
                             e.target.playVideo();

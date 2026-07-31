@@ -6,6 +6,8 @@ import {
     AccordionTrigger
 } from '@/registry/new-york-v4/ui/accordion';
 
+import { ArrowUpRight } from 'lucide-react';
+
 const FAQS = [
     {
         q: 'What is shoreline protection?',
@@ -43,35 +45,45 @@ const FAQS = [
 
 const Faq = () => {
     return (
-        <section className='bg-secondary/40 border-border/60 border-y'>
-            <div className='mx-auto grid max-w-7xl gap-12 px-5 py-20 sm:px-8 sm:py-28 lg:grid-cols-12'>
+        <section className='bg-[#42654a]'>
+            <div className='mx-auto grid max-w-7xl gap-12 px-5 py-20 sm:px-8 sm:py-28 lg:grid-cols-12 lg:gap-8'>
+                {/* Editorial masthead */}
                 <div className='lg:col-span-4'>
                     <Reveal variant='blur'>
-                        <h2 className='font-display text-foreground text-4xl leading-[1.08] font-light tracking-tight sm:text-5xl'>
-                            Questions, <span className='text-primary italic'>answered</span>
+                        <h2 className='font-editorial text-3xl leading-[1.05] tracking-tight text-[#f2efe6] sm:text-4xl lg:text-6xl'>
+                            Questions,
+                            <span className='font-display mt-1 block font-light text-[#c3d8c3] italic'>answered</span>
                         </h2>
                     </Reveal>
                     <Reveal delay={160}>
-                        <p className='text-muted-foreground mt-5 leading-relaxed'>
-                            Everything you need to know about our landscape and shoreline services. Can’t find the
-                            answer you’re looking for? Reach out to our team.
+                        <p className='mt-6 max-w-xs leading-relaxed text-[#f2efe6]/65'>
+                            Everything you need to know about our landscape and shoreline services.
                         </p>
+                    </Reveal>
+                    <Reveal delay={240}>
+                        <a
+                            href='mailto:info@prittylandscapes.com'
+                            className='group mt-8 inline-flex items-center gap-2 text-sm text-[#f2efe6]'>
+                            <span className='link-line'>Ask us anything</span>
+                            <ArrowUpRight className='size-4 transition-transform duration-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5' />
+                        </a>
                     </Reveal>
                 </div>
 
+                {/* Oversized question index */}
                 <div className='lg:col-span-8'>
                     <Reveal delay={120}>
-                        <Accordion type='single' collapsible className='w-full'>
-                        {FAQS.map((faq, i) => (
-                            <AccordionItem key={i} value={`item-${i}`} className='border-border/60'>
-                                <AccordionTrigger className='font-display text-foreground text-left text-lg font-normal hover:no-underline'>
-                                    {faq.q}
-                                </AccordionTrigger>
-                                <AccordionContent className='text-muted-foreground text-sm leading-relaxed'>
-                                    {faq.a}
-                                </AccordionContent>
-                            </AccordionItem>
-                        ))}
+                        <Accordion type='single' collapsible className='w-full border-t border-white/15'>
+                            {FAQS.map((faq, i) => (
+                                <AccordionItem key={i} value={`item-${i}`} className='border-white/15'>
+                                    <AccordionTrigger className='font-editorial group items-center py-6 text-left text-lg leading-snug tracking-tight text-[#f2efe6] transition-colors duration-500 hover:text-[#c3d8c3] hover:no-underline sm:py-7 sm:text-xl [&>svg]:size-5 [&>svg]:translate-y-0 [&>svg]:text-[#f2efe6]/60'>
+                                        {faq.q}
+                                    </AccordionTrigger>
+                                    <AccordionContent className='max-w-2xl pb-9 text-base leading-relaxed text-[#f2efe6]/70'>
+                                        {faq.a}
+                                    </AccordionContent>
+                                </AccordionItem>
+                            ))}
                         </Accordion>
                     </Reveal>
                 </div>

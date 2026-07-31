@@ -109,8 +109,9 @@ const AboutPage = () => {
             <section className='border-border/60 border-b'>
                 <div className='mx-auto max-w-7xl px-5 pt-36 pb-16 sm:px-8 sm:pt-44 sm:pb-20'>
                     <Reveal variant='blur'>
-                        <h1 className='font-display text-foreground max-w-4xl text-5xl leading-[1.02] font-light tracking-tight sm:text-7xl'>
-                            A Distinctively <span className='text-primary italic'>Different</span> Approach
+                        <h1 className='font-editorial text-foreground max-w-4xl text-4xl leading-[1.02] tracking-tight sm:text-5xl lg:text-6xl'>
+                            A Distinctively <span className='font-display text-primary font-light italic'>Different</span>{' '}
+                            Approach
                         </h1>
                     </Reveal>
                     <Reveal variant='up' delay={160}>
@@ -135,8 +136,8 @@ const AboutPage = () => {
             <section className='bg-[#16241b]'>
                 <div className='mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32'>
                     <Reveal variant='blur'>
-                        <h2 className='font-display max-w-3xl text-4xl leading-[1.04] font-light tracking-tight text-white sm:text-5xl'>
-                            Rooted in mission, vision &amp; <span className='italic'>values</span>
+                        <h2 className='font-editorial max-w-3xl text-3xl leading-[1.04] tracking-tight text-white sm:text-4xl lg:text-5xl'>
+                            Rooted in mission, vision &amp; <span className='font-display font-light italic'>values</span>
                         </h2>
                     </Reveal>
 
@@ -156,8 +157,8 @@ const AboutPage = () => {
             <section className='bg-secondary/40 border-border/60 border-y'>
                 <div className='mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32'>
                     <Reveal variant='blur'>
-                        <h2 className='font-display text-foreground text-4xl leading-[1.04] font-light tracking-tight sm:text-5xl'>
-                            The people behind the <span className='text-primary italic'>work</span>
+                        <h2 className='font-editorial text-foreground text-3xl leading-[1.04] tracking-tight sm:text-4xl lg:text-5xl'>
+                            The people behind the <span className='font-display text-primary font-light italic'>work</span>
                         </h2>
                     </Reveal>
 
@@ -185,7 +186,7 @@ const AboutPage = () => {
                         </span>
                     </Reveal>
                     <Reveal variant='blur' delay={160}>
-                        <blockquote className='font-display mt-8 text-2xl leading-[1.3] font-light tracking-tight text-white sm:text-3xl'>
+                        <blockquote className='font-editorial mt-8 text-2xl leading-[1.3] tracking-tight text-white sm:text-3xl'>
                             “Tyler’s approach was different. From the very first placement of armour stone, I knew this
                             was a very special project. I simply needed to trust in his experience, excitement, and
                             vision.”
@@ -233,8 +234,8 @@ const AboutPage = () => {
                 <div className='mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32'>
                     <div className='flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between'>
                         <Reveal variant='blur'>
-                            <h2 className='font-display text-foreground text-4xl leading-[1.04] font-light tracking-tight sm:text-5xl'>
-                                Our Award-Winning <span className='text-primary italic'>Designs</span>
+                            <h2 className='font-editorial text-foreground text-3xl leading-[1.04] tracking-tight sm:text-4xl lg:text-5xl'>
+                                Our Award-Winning <span className='font-display text-primary font-light italic'>Designs</span>
                             </h2>
                         </Reveal>
                         <Reveal variant='up' delay={160}>
@@ -279,8 +280,8 @@ const AboutPage = () => {
                 <div className='from-[#0e1a13]/85 absolute inset-0 bg-gradient-to-t via-transparent to-[#0e1a13]/40' />
                 <div className='relative z-10 mx-auto w-full max-w-7xl px-5 sm:px-8'>
                     <Reveal variant='blur' delay={120}>
-                        <h2 className='font-display max-w-3xl text-4xl leading-[1.05] font-light tracking-tight text-white sm:text-6xl'>
-                            Masters of Natural <span className='italic'>Landscape Design</span>
+                        <h2 className='font-editorial max-w-3xl text-3xl leading-[1.05] tracking-tight text-white sm:text-4xl lg:text-5xl'>
+                            Masters of Natural <span className='font-display font-light italic'>Landscape Design</span>
                         </h2>
                     </Reveal>
                     <Reveal variant='up' delay={240}>

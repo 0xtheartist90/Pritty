@@ -19,18 +19,13 @@ const ParallaxBand = () => {
 
             <div className='relative z-10 mx-auto max-w-4xl px-5 text-center sm:px-8'>
                 <Reveal variant='blur' delay={120}>
-                    <p className='font-display mt-7 text-4xl leading-[1.12] font-light text-white sm:text-6xl lg:text-7xl'>
+                    <p className='font-editorial mt-7 text-3xl leading-[1.12] text-white sm:text-4xl lg:text-6xl'>
                         We don’t work against nature.
-                        <br className='hidden sm:block' /> We design <span className='italic'>with</span> her.
+                        <br className='hidden sm:block' /> We design{' '}
+                        <span className='font-display font-light italic'>with</span> her.
                     </p>
                 </Reveal>
-                <Reveal variant='up' delay={260}>
-                    <p className='mx-auto mt-8 max-w-xl leading-relaxed text-white/75'>
-                        Every shoreline, every garden, every stone is placed with intention. Sustainable by principle,
-                        timeless by design. This is what earned us the Green Stamp Award.
-                    </p>
-                </Reveal>
-                <Reveal variant='scale' delay={360}>
+                <Reveal variant='scale' delay={300}>
                     <Button asChild size='lg' className='mt-9 bg-white px-7 text-[#16241b] hover:bg-white/90'>
                         <Link href='/about'>
                             More About Us <ArrowUpRight className='size-4' />

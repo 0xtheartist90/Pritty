@@ -10,8 +10,9 @@ type MarqueeProps = {
 };
 
 /**
- * Infinite horizontal marquee. Children are rendered twice back-to-back and the
- * track translates by exactly one copy, so the loop is seamless at any width.
+ * Infinite horizontal marquee. Children are rendered four times back-to-back
+ * and the track translates by exactly one copy (-25%), so the loop stays
+ * seamless even when a single copy is narrower than the viewport.
  */
 const Marquee = ({ children, className, duration = 36 }: MarqueeProps) => {
     return (
@@ -20,9 +21,11 @@ const Marquee = ({ children, className, duration = 36 }: MarqueeProps) => {
                 className='marquee-track inline-flex'
                 style={{ '--marquee-duration': `${duration}s` } as CSSProperties}>
                 <div className='flex shrink-0 items-center'>{children}</div>
-                <div aria-hidden className='flex shrink-0 items-center'>
-                    {children}
-                </div>
+                {[1, 2, 3].map((i) => (
+                    <div key={i} aria-hidden className='flex shrink-0 items-center'>
+                        {children}
+                    </div>
+                ))}
             </div>
         </div>
     );

@@ -1,10 +1,18 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
+import { DesignIcon, DredgingIcon, LandscapesIcon, ShorelinesIcon } from '@/components/home/service-icons';
 import Reveal from '@/components/reveal';
-import { DesignIcon, LandscapesIcon, ShorelinesIcon } from '@/components/home/service-icons';
+import ShellPattern from '@/components/shell-pattern';
 
 import { ArrowUpRight } from 'lucide-react';
+
+const CAPABILITIES = [
+    { icon: LandscapesIcon, label: 'Landscapes' },
+    { icon: DesignIcon, label: 'Design' },
+    { icon: ShorelinesIcon, label: 'Shorelines' },
+    { icon: DredgingIcon, label: 'Water Services' }
+];
 
 const SERVICES = [
     {
@@ -39,21 +47,38 @@ const SERVICES = [
  */
 const Approach = () => {
     return (
-        <section className='bg-secondary/40 border-border/60 border-y'>
-            <div className='mx-auto max-w-7xl px-5 pt-24 pb-16 sm:px-8 sm:pt-32 sm:pb-20'>
-                <div className='grid gap-8 lg:grid-cols-12 lg:items-end'>
-                    <div className='lg:col-span-8'>
-                        <Reveal variant='blur'>
-                            <h2 className='font-display text-foreground text-4xl leading-[1.04] font-light tracking-tight sm:text-5xl lg:text-6xl'>
-                                A distinctively <span className='text-primary italic'>different</span> approach
-                            </h2>
+        <section className='bg-secondary/40'>
+            <div className='relative'>
+                <ShellPattern />
+                <div className='relative mx-auto max-w-7xl px-5 pt-24 pb-16 sm:px-8 sm:pt-32 sm:pb-20'>
+                    <div className='grid gap-8 lg:grid-cols-12 lg:items-end'>
+                        <div className='lg:col-span-8'>
+                            <Reveal variant='blur'>
+                                <h2 className='font-editorial text-foreground text-3xl leading-[1.04] tracking-tight sm:text-4xl lg:text-6xl'>
+                                    A distinctively <span className='font-display text-primary font-light italic'>different</span> approach
+                                </h2>
+                            </Reveal>
+                        </div>
+                        <Reveal variant='up' delay={140} className='lg:col-span-4'>
+                            <p className='text-muted-foreground leading-relaxed'>
+                                Architecture, landscaping and shoreline contracting under one roof. Natural elements and
+                                organic materials, shaped into outdoor living spaces inspired by water.
+                            </p>
                         </Reveal>
                     </div>
-                    <Reveal variant='up' delay={140} className='lg:col-span-4'>
-                        <p className='text-muted-foreground leading-relaxed'>
-                            Architecture, landscaping and shoreline contracting under one roof. Natural elements and
-                            organic materials, shaped into outdoor living spaces inspired by water.
-                        </p>
+
+                    {/* Modular capability strip — hairline cells, icon top / label bottom. */}
+                    <Reveal variant='up' delay={220}>
+                        <div className='border-border/70 bg-background/40 mt-16 grid grid-cols-2 border-t border-l lg:grid-cols-4'>
+                            {CAPABILITIES.map(({ icon: Icon, label }) => (
+                                <div
+                                    key={label}
+                                    className='border-border/70 group flex h-44 flex-col justify-between border-r border-b p-6 transition-colors duration-500 hover:bg-background sm:h-52'>
+                                    <Icon className='text-primary size-9 transition-transform duration-500 group-hover:-translate-y-1' />
+                                    <p className='text-foreground/80 text-sm'>{label}</p>
+                                </div>
+                            ))}
+                        </div>
                     </Reveal>
                 </div>
             </div>
@@ -61,23 +86,16 @@ const Approach = () => {
             {SERVICES.map(({ icon: Icon, title, accent, body, image, alt }, i) => (
                 <div key={title} className='sticky top-0'>
                     <div className='relative flex min-h-[100svh] items-start overflow-hidden'>
-                        <Image
-                            src={image}
-                            alt={alt}
-                            fill
-                            sizes='100vw'
-                            className='object-cover'
-                            priority={i === 0}
-                        />
+                        <Image src={image} alt={alt} fill sizes='100vw' className='object-cover' priority={i === 0} />
                         <div className='absolute inset-0 bg-[#0e1a13]/35' />
-                        <div className='from-[#0e1a13]/95 absolute inset-0 bg-gradient-to-b via-[#0e1a13]/30 to-[#0e1a13]/20' />
+                        <div className='absolute inset-0 bg-gradient-to-b from-[#0e1a13]/95 via-[#0e1a13]/30 to-[#0e1a13]/20' />
 
                         <div className='relative z-10 w-full px-5 pt-28 sm:px-8 sm:pt-32 lg:px-10'>
                             <Reveal variant='up' className='max-w-2xl'>
                                 <Icon className='size-14 text-white/85 sm:size-16' />
-                                <h3 className='font-display mt-6 text-5xl leading-[0.98] font-light tracking-tight text-white sm:text-7xl'>
+                                <h3 className='font-editorial mt-6 text-4xl leading-[0.98] tracking-tight text-white sm:text-5xl lg:text-7xl'>
                                     {title}
-                                    <span className='mt-2 block text-2xl text-white/70 italic sm:text-4xl'>
+                                    <span className='font-display mt-2 block text-xl font-light text-white/70 italic sm:text-2xl'>
                                         {accent}
                                     </span>
                                 </h3>

@@ -1,45 +1,47 @@
 import Link from 'next/link';
 
-import BgVideo from '@/components/bg-video';
+import { BargingIcon, BuildingIcon, DredgingIcon } from '@/components/home/service-icons';
 import Reveal from '@/components/reveal';
 
 import { ArrowUpRight } from 'lucide-react';
 
 const ITEMS = [
     {
+        icon: DredgingIcon,
         title: 'Dredging',
         body: 'Restore depth and clarity to your pond or lakefront with precision dredging.'
     },
     {
+        icon: BargingIcon,
         title: 'Barging',
         body: 'Reliable barging and marine logistics for your water-access property.'
     },
     {
+        icon: BuildingIcon,
         title: 'Building',
         body: 'Construction for your waterfront shoreline, built to last a lifetime.'
     }
 ];
 
 /**
- * Fullscreen "Inspired by Water" band: video backdrop with the marine services
- * as a quiet index list of serif rows rather than cards.
+ * "Inspired by Water": the marine services as hairline-divided cells on a dark
+ * ground, icon top and content anchored to the bottom. The water video lives in
+ * its own full-width banner section right below (video-banner.tsx).
  */
 const WaterServices = () => {
     return (
-        <section className='relative flex min-h-[100svh] items-center overflow-hidden py-24'>
-            <BgVideo videoId='wgoDINcFZ9g' poster='/gallery/water.webp' posterAlt='Waterfront landscape' />
-            <div className='absolute inset-0 bg-[#0e1a13]/65' />
-            <div className='from-[#0e1a13]/85 absolute inset-0 bg-gradient-to-t via-[#0e1a13]/35 to-[#0e1a13]/70' />
-
-            <div className='relative z-10 mx-auto w-full max-w-7xl px-5 sm:px-8'>
-                <div className='max-w-2xl'>
-                    <Reveal variant='blur'>
-                        <h2 className='font-display text-4xl leading-[1.04] font-light tracking-tight text-white sm:text-6xl'>
-                            Inspired by <span className='italic'>water</span>
-                        </h2>
-                    </Reveal>
-                    <Reveal variant='up' delay={160}>
-                        <p className='mt-6 max-w-xl leading-relaxed text-white/80'>
+        <section className='bg-[#0e1a13] py-24 sm:py-32'>
+            <div className='mx-auto w-full max-w-7xl px-5 sm:px-8'>
+                <div className='grid gap-8 lg:grid-cols-12 lg:items-end'>
+                    <div className='lg:col-span-7'>
+                        <Reveal variant='blur'>
+                            <h2 className='font-editorial text-3xl leading-[1.04] tracking-tight text-white sm:text-4xl lg:text-6xl'>
+                                Inspired by <span className='font-display font-light italic'>water</span>
+                            </h2>
+                        </Reveal>
+                    </div>
+                    <Reveal variant='up' delay={160} className='lg:col-span-4 lg:col-start-9'>
+                        <p className='leading-relaxed text-white/75'>
                             Years of working on and around the water have given us a rare set of skills. Robust
                             knowledge, purpose-built equipment and a sustainable practice recognized with the Green
                             Stamp Award.
@@ -47,26 +49,28 @@ const WaterServices = () => {
                     </Reveal>
                 </div>
 
-                <div className='mt-16 border-b border-white/15'>
-                    {ITEMS.map(({ title, body }, i) => (
-                        <Reveal key={title} variant='up' delay={i * 110}>
+                <Reveal delay={220}>
+                    <div className='mt-16 grid divide-y divide-white/15 border-y border-white/15 lg:grid-cols-3 lg:divide-x lg:divide-y-0'>
+                        {ITEMS.map(({ icon: Icon, title, body }) => (
                             <Link
+                                key={title}
                                 href='/contact'
-                                className='group grid grid-cols-[2.5rem_1fr_auto] items-center gap-4 border-t border-white/15 py-7 transition-colors duration-500 hover:bg-white/5 sm:grid-cols-[4rem_1fr_auto] sm:gap-8 sm:py-9'>
-                                <span className='font-mono text-xs text-white/40'>0{i + 1}</span>
-                                <span className='flex flex-col gap-1.5 sm:flex-row sm:items-baseline sm:gap-10'>
-                                    <span className='font-display w-44 shrink-0 text-3xl font-light text-white transition-colors sm:text-4xl'>
+                                className='group flex flex-col justify-between gap-12 p-7 transition-colors duration-500 hover:bg-white/5 sm:p-9 lg:min-h-80'>
+                                <Icon className='size-11 text-white/75 transition-all duration-500 group-hover:-translate-y-1 group-hover:text-white' />
+                                <div>
+                                    <h3 className='font-editorial text-2xl tracking-tight text-white'>
                                         {title}
+                                    </h3>
+                                    <p className='mt-3 max-w-xs text-sm leading-relaxed text-white/60'>{body}</p>
+                                    <span className='mt-7 inline-flex items-center gap-1.5 font-mono text-xs tracking-wider text-white/80 uppercase transition-colors group-hover:text-white'>
+                                        Book Now
+                                        <ArrowUpRight className='size-3.5 transition-transform duration-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5' />
                                     </span>
-                                    <span className='max-w-md text-sm leading-relaxed text-white/60 transition-colors group-hover:text-white/80'>
-                                        {body}
-                                    </span>
-                                </span>
-                                <ArrowUpRight className='size-5 text-white/40 transition-all duration-500 group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-white' />
+                                </div>
                             </Link>
-                        </Reveal>
-                    ))}
-                </div>
+                        ))}
+                    </div>
+                </Reveal>
             </div>
         </section>
     );
