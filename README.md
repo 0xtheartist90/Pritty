@@ -10,10 +10,6 @@
 
 Welcome to the **Next.js 15 Starter** repository! This starter template is built with Next.js 15, React 19, TypeScript 5, Tailwind CSS 4, Shadcn UI and comes packed with several powerful tools and configurations to accelerate your project setup and streamline development workflows using VS Code.
 
-![Next.js 15 Starter Shadcn](public/images/screenshot1.png)
-
-![Next.js 15 Starter Shadcn](public/images/screenshot2.png)
-
 ## 🚀 What's Included
 
 - **Next.js 15**
