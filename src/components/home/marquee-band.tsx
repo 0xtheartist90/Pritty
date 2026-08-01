@@ -1,7 +1,8 @@
 import Marquee from '@/components/marquee';
 import ShellPattern from '@/components/shell-pattern';
 
-const ITEMS = ['Landscapes', 'Shorelines', 'Design', 'Water Features', 'Stonework'];
+// Craft and materials, deliberately not a repeat of the service names above.
+const ITEMS = ['Armour Stone', 'Native Planting', 'Flagstone Terraces', 'Water Features', 'Natural Stone'];
 
 /**
  * Full-bleed typographic marquee — a breathing moment between sections,

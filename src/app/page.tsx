@@ -4,7 +4,6 @@ import FeaturedProjects from '@/components/home/featured-projects';
 import FinalCta from '@/components/home/final-cta';
 import Hero from '@/components/home/hero';
 import MarqueeBand from '@/components/home/marquee-band';
-import ParallaxBand from '@/components/home/parallax-band';
 import PhotoBanner from '@/components/home/photo-banner';
 import Process from '@/components/home/process';
 import Proof from '@/components/home/proof';
@@ -25,8 +24,6 @@ const Page = () => {
 
             <Statement />
 
-            <ParallaxBand />
-
             <FeaturedProjects />
 
             <MarqueeBand />
@@ -42,8 +39,6 @@ const Page = () => {
             <PhotoBanner />
 
             <Proof />
-
-            <PhotoBanner src='/gallery/banner2.webp' />
 
             <Faq />
 

@@ -12,7 +12,7 @@ import { ArrowUpRight } from 'lucide-react';
 const Statement = () => {
     return (
         <section className='relative bg-[#42654a]'>
-            <div className='relative mx-auto max-w-7xl px-5 py-28 sm:px-8 sm:py-40'>
+            <div className='relative mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32'>
                 <p className='font-editorial max-w-4xl text-3xl leading-[1.18] tracking-tight text-[#f2efe6] sm:text-4xl lg:text-6xl'>
                     <TextReveal text='Twenty years of shaping land and water into places that feel inevitable.' stagger={40} />{' '}
                     <TextReveal

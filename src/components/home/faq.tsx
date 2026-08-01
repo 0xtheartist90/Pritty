@@ -46,7 +46,7 @@ const FAQS = [
 const Faq = () => {
     return (
         <section className='bg-[#42654a]'>
-            <div className='mx-auto grid max-w-7xl gap-12 px-5 py-20 sm:px-8 sm:py-28 lg:grid-cols-12 lg:gap-8'>
+            <div className='mx-auto grid max-w-7xl gap-12 px-5 py-24 sm:px-8 sm:py-32 lg:grid-cols-12 lg:gap-8'>
                 {/* Editorial masthead */}
                 <div className='lg:col-span-4'>
                     <Reveal variant='blur'>

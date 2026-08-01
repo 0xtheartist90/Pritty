@@ -1,18 +1,11 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { DesignIcon, DredgingIcon, LandscapesIcon, ShorelinesIcon } from '@/components/home/service-icons';
+import { DesignIcon, LandscapesIcon, ShorelinesIcon } from '@/components/home/service-icons';
 import Reveal from '@/components/reveal';
 import ShellPattern from '@/components/shell-pattern';
 
 import { ArrowUpRight } from 'lucide-react';
-
-const CAPABILITIES = [
-    { icon: LandscapesIcon, label: 'Landscapes' },
-    { icon: DesignIcon, label: 'Design' },
-    { icon: ShorelinesIcon, label: 'Shorelines' },
-    { icon: DredgingIcon, label: 'Water Services' }
-];
 
 const SERVICES = [
     {
@@ -66,20 +59,6 @@ const Approach = () => {
                             </p>
                         </Reveal>
                     </div>
-
-                    {/* Modular capability strip — hairline cells, icon top / label bottom. */}
-                    <Reveal variant='up' delay={220}>
-                        <div className='border-border/70 bg-background/40 mt-16 grid grid-cols-2 border-t border-l lg:grid-cols-4'>
-                            {CAPABILITIES.map(({ icon: Icon, label }) => (
-                                <div
-                                    key={label}
-                                    className='border-border/70 group flex h-44 flex-col justify-between border-r border-b p-6 transition-colors duration-500 hover:bg-background sm:h-52'>
-                                    <Icon className='text-primary size-9 transition-transform duration-500 group-hover:-translate-y-1' />
-                                    <p className='text-foreground/80 text-sm'>{label}</p>
-                                </div>
-                            ))}
-                        </div>
-                    </Reveal>
                 </div>
             </div>
 
