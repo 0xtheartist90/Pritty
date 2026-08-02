@@ -1,7 +1,6 @@
 import Link from 'next/link';
 
 import Reveal from '@/components/reveal';
-import { Button } from '@/registry/new-york-v4/ui/button';
 
 import { ArrowUpRight, Phone } from 'lucide-react';
 
@@ -13,8 +12,8 @@ const FinalCta = () => {
         <section
             className='relative flex min-h-[100svh] items-center overflow-hidden bg-fixed bg-cover bg-center'
             style={{ backgroundImage: "url('/gallery/cta.webp')" }}>
-            <div className='absolute inset-0 bg-[#0e1a13]/55' />
-            <div className='from-[#0e1a13]/90 absolute inset-0 bg-gradient-to-t via-transparent to-[#0e1a13]/40' />
+            <div className='absolute inset-0 bg-[#0e1a13]/40' />
+            <div className='from-[#0e1a13]/75 absolute inset-0 bg-gradient-to-t via-transparent to-[#0e1a13]/25' />
 
             <div className='relative z-10 mx-auto w-full max-w-7xl px-5 sm:px-8'>
                 <div className='max-w-2xl'>
@@ -23,12 +22,13 @@ const FinalCta = () => {
                             Your Dream Landscape <span className='font-display font-light italic'>Starts Here</span>
                         </h2>
                     </Reveal>
-                    <Reveal variant='scale' delay={280} className='mt-9 flex flex-wrap items-center gap-4'>
-                        <Button asChild size='lg' className='rounded-full bg-white px-7 text-[#16241b] hover:bg-white/90'>
-                            <Link href='/contact'>
-                                Book a Consultation <ArrowUpRight className='size-4' />
-                            </Link>
-                        </Button>
+                    <Reveal variant='up' delay={280} className='mt-9 flex flex-wrap items-center gap-x-8 gap-y-4'>
+                        <Link
+                            href='/contact'
+                            className='group inline-flex items-center gap-2 border border-white/50 px-7 py-3 text-sm text-white transition-colors duration-500 hover:bg-white hover:text-[#16241b]'>
+                            Book a Consultation
+                            <ArrowUpRight className='size-4 transition-transform duration-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5' />
+                        </Link>
                         <a
                             href='tel:+14167220210'
                             className='inline-flex items-center gap-2 text-sm tracking-wide text-white/85 transition-colors hover:text-white'>

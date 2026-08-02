@@ -62,12 +62,14 @@ const Approach = () => {
                 </div>
             </div>
 
+            {/* Stacking is desktop-only; on mobile the panels flow as calm,
+                full-screen frames without the sliding-over effect. */}
             {SERVICES.map(({ icon: Icon, title, accent, body, image, alt }, i) => (
-                <div key={title} className='sticky top-0'>
+                <div key={title} className='lg:sticky lg:top-0'>
                     <div className='relative flex min-h-[100svh] items-start overflow-hidden'>
                         <Image src={image} alt={alt} fill sizes='100vw' className='object-cover' priority={i === 0} />
-                        <div className='absolute inset-0 bg-[#0e1a13]/35' />
-                        <div className='absolute inset-0 bg-gradient-to-b from-[#0e1a13]/95 via-[#0e1a13]/30 to-[#0e1a13]/20' />
+                        <div className='absolute inset-0 bg-[#0e1a13]/20' />
+                        <div className='absolute inset-0 bg-gradient-to-b from-[#0e1a13]/80 via-[#0e1a13]/15 to-[#0e1a13]/10' />
 
                         <div className='relative z-10 w-full px-5 pt-28 sm:px-8 sm:pt-32 lg:px-10'>
                             <Reveal variant='up' className='max-w-2xl'>

@@ -33,9 +33,11 @@ const STEPS = [
 const Process = () => {
     return (
         <section>
+            {/* Stacking is desktop-only; on mobile the chapters read as a calm
+                sequence of colour blocks at natural height. */}
             {STEPS.map(({ n, title, body, theme, muted }) => (
-                <div key={n} className='sticky top-0'>
-                    <div className={cn('flex min-h-[100svh] items-center', theme)}>
+                <div key={n} className='lg:sticky lg:top-0'>
+                    <div className={cn('flex items-center lg:min-h-[100svh]', theme)}>
                         <div className='mx-auto grid w-full max-w-7xl gap-8 px-5 py-20 sm:px-8 lg:grid-cols-12 lg:items-center'>
                             <Reveal variant='up' className='lg:col-span-7'>
                                 <h3 className='flex items-start gap-3'>

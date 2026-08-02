@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 
 import type { Metadata } from 'next';
-import { Archivo, Fraunces } from 'next/font/google';
+import { Fraunces } from 'next/font/google';
 import localFont from 'next/font/local';
 
 import { ThemeProvider } from 'next-themes';
@@ -28,11 +28,6 @@ const fraunces = Fraunces({
     display: 'swap',
     axes: ['opsz']
 });
-const archivo = Archivo({
-    subsets: ['latin'],
-    variable: '--font-archivo',
-    display: 'swap'
-});
 
 export const metadata: Metadata = {
     title: 'Pritty Landscapes | Naturally Refined, Inspired by Water',
@@ -44,7 +39,7 @@ const Layout = ({ children }: Readonly<{ children: ReactNode }>) => {
     return (
         <html suppressHydrationWarning lang='en'>
             <body
-                className={`${geistSans.variable} ${geistMono.variable} ${fraunces.variable} ${archivo.variable} bg-background text-foreground font-sans overscroll-none antialiased`}>
+                className={`${geistSans.variable} ${geistMono.variable} ${fraunces.variable} bg-background text-foreground font-sans overscroll-none antialiased`}>
                 <ThemeProvider forcedTheme='light' attribute='class'>
                     <SmoothScroll />
                     <SiteHeader />

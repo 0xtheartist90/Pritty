@@ -6,7 +6,6 @@ import Link from 'next/link';
 
 import HeroVideo from '@/components/home/hero-video';
 import Reveal from '@/components/reveal';
-import { Button } from '@/registry/new-york-v4/ui/button';
 
 import { ArrowUpRight } from 'lucide-react';
 
@@ -34,13 +33,14 @@ const Hero = () => {
     return (
         <section className='relative flex h-[100svh] min-h-[660px] w-full flex-col overflow-hidden bg-[#16241b]'>
             <HeroVideo />
-            {/* Tonal overlays — darken for legibility, weight toward the bottom. */}
-            <div className='absolute inset-0 bg-black/25' />
-            <div className='absolute inset-0 bg-gradient-to-t from-[#0e1a13]/90 via-[#0e1a13]/25 to-[#0e1a13]/45' />
+            {/* Light tonal wash — just enough grounding at the bottom for the type,
+                keeping the footage itself bright and open. */}
+            <div className='absolute inset-0 bg-black/10' />
+            <div className='absolute inset-0 bg-gradient-to-t from-[#0e1a13]/65 via-[#0e1a13]/10 to-[#0e1a13]/20' />
 
             <div className='relative z-10 flex h-full w-full flex-col justify-end px-5 pt-28 pb-10 sm:px-8 sm:pb-14 lg:px-10'>
                 <Reveal variant='blur' delay={140}>
-                    <h1 className='font-editorial mt-6 text-5xl leading-[0.92] tracking-tight text-white sm:text-6xl lg:text-7xl xl:text-8xl'>
+                    <h1 className='font-editorial mt-6 text-5xl leading-[0.98] tracking-tight text-white sm:text-6xl lg:text-7xl xl:text-8xl'>
                         <span className='block'>Transform Your</span>
                         <span className='relative mt-1 block overflow-hidden pb-2'>
                             {prev !== null && (
@@ -58,19 +58,19 @@ const Hero = () => {
                     </h1>
                 </Reveal>
 
-                <Reveal variant='scale' delay={360} className='mt-9 flex flex-wrap items-center gap-4'>
-                    <Button asChild size='lg' className='rounded-full bg-white px-7 text-[#16241b] hover:bg-white/90'>
-                        <Link href='/contact'>
-                            Book a Consultation <ArrowUpRight className='size-4' />
-                        </Link>
-                    </Button>
-                    <Button
-                        asChild
-                        size='lg'
-                        variant='outline'
-                        className='rounded-full border-white/40 bg-transparent px-7 text-white hover:bg-white/10 hover:text-white'>
-                        <Link href='/portfolio'>Explore Portfolio</Link>
-                    </Button>
+                <Reveal variant='up' delay={360} className='mt-9 flex flex-wrap items-center gap-x-8 gap-y-4'>
+                    <Link
+                        href='/contact'
+                        className='group inline-flex items-center gap-2 border border-white/50 px-7 py-3 text-sm text-white transition-colors duration-500 hover:bg-white hover:text-[#16241b]'>
+                        Book a Consultation
+                        <ArrowUpRight className='size-4 transition-transform duration-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5' />
+                    </Link>
+                    <Link
+                        href='/portfolio'
+                        className='group inline-flex items-center gap-2 text-sm text-white/85 transition-colors hover:text-white'>
+                        <span className='link-line'>Explore portfolio</span>
+                        <ArrowUpRight className='size-4 transition-transform duration-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5' />
+                    </Link>
                 </Reveal>
 
                 <Reveal
