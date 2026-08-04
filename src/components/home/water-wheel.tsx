@@ -14,8 +14,9 @@ const ORBIT_RADIUS = 0.45;
 /** Icons sit halfway between rays (rays fall every 45°) so they never cover a line. */
 const ORBIT_OFFSET = 22.5;
 
-/** Total wheel rotation across the full scroll — one full circle per chapter. */
-const TOTAL_ROTATION = 1080;
+/** Total wheel rotation across the full scroll — three quarters of a circle
+    per chapter. */
+const TOTAL_ROTATION = 810;
 
 /** Beats within a chapter's circle: title at the start, then the subtitle,
     then the reading text — each earned with its own stretch of scroll. */
@@ -126,7 +127,7 @@ const WaterWheel = () => {
     }, []);
 
     return (
-        <section ref={sectionRef} className='relative hidden h-[900vh] bg-[#0e1a13] lg:block'>
+        <section ref={sectionRef} className='relative hidden h-[675vh] bg-[#0e1a13] lg:block'>
             <div className='sticky top-0 flex h-screen w-full items-center justify-center overflow-hidden'>
                 {/* Compass rays, fading out towards the centre so the type stays clear. */}
                 <div
