@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 
 import type { Metadata } from 'next';
-import { Hedvig_Letters_Serif } from 'next/font/google';
+import { Hedvig_Letters_Serif, Poppins } from 'next/font/google';
 import localFont from 'next/font/local';
 
 import { ThemeProvider } from 'next-themes';
@@ -12,10 +12,14 @@ import SmoothScroll from '@/components/smooth-scroll';
 import '@/app/globals.css';
 import { Toaster } from '@/registry/new-york-v4/ui/sonner';
 
-const geistSans = localFont({
-    src: './fonts/GeistVF.woff',
-    variable: '--font-geist-sans',
-    weight: '100 900'
+/* Body and display grotesk. Poppins stands in for the licensed face of the
+   reference sites — geometric rather than neo-grotesk, but the same clean,
+   quiet register at the weights we use. */
+const poppins = Poppins({
+    subsets: ['latin'],
+    variable: '--font-poppins',
+    weight: ['300', '400', '500'],
+    display: 'swap'
 });
 const geistMono = localFont({
     src: './fonts/GeistMonoVF.woff',
@@ -40,7 +44,7 @@ const Layout = ({ children }: Readonly<{ children: ReactNode }>) => {
     return (
         <html suppressHydrationWarning lang='en'>
             <body
-                className={`${geistSans.variable} ${geistMono.variable} ${hedvig.variable} bg-background text-foreground font-sans overscroll-none antialiased`}>
+                className={`${poppins.variable} ${geistMono.variable} ${hedvig.variable} bg-background text-foreground font-sans overscroll-none antialiased`}>
                 <ThemeProvider forcedTheme='light' attribute='class'>
                     <SmoothScroll />
                     <SiteHeader />

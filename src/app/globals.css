@@ -130,10 +130,10 @@
 }
 
 @theme inline {
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-poppins);
   --font-mono: var(--font-geist-mono);
   --font-display: var(--font-hedvig);
-  --font-editorial: var(--font-geist-sans);
+  --font-editorial: var(--font-poppins);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -400,7 +400,9 @@
    small meta labels, the inverted hierarchy of high-end bureau sites. */
 .font-editorial {
   font-weight: 400;
-  letter-spacing: -0.03em;
+  /* Poppins is geometric and wide, so it needs a touch less negative tracking
+     than a neo-grotesk before the counters start to close up. */
+  letter-spacing: -0.025em;
 }
 
 /* Lenis smooth scrolling (see components/smooth-scroll.tsx). */
