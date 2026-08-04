@@ -76,6 +76,15 @@ const Reveal = ({ variant = 'up', delay = 0, className, style, children, ...prop
             className={cn(VARIANT_CLASS[variant], visible && 'is-visible', className)}
             {...props}>
             {children}
+            {/* Photography unveils behind a row of slim panels that lift away one
+                by one, rather than a single solid curtain. */}
+            {variant === 'media' && (
+                <div aria-hidden className='reveal-media__cols'>
+                    {Array.from({ length: 5 }).map((_, i) => (
+                        <span key={i} style={{ transitionDelay: `${delay + i * 90}ms` }} />
+                    ))}
+                </div>
+            )}
         </div>
     );
 };

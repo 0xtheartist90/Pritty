@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 
 import type { Metadata } from 'next';
-import { Fraunces } from 'next/font/google';
+import { Hedvig_Letters_Serif } from 'next/font/google';
 import localFont from 'next/font/local';
 
 import { ThemeProvider } from 'next-themes';
@@ -22,11 +22,12 @@ const geistMono = localFont({
     variable: '--font-geist-mono',
     weight: '100 900'
 });
-const fraunces = Fraunces({
+/* The serif of the reference bureau sites (Kononenko et al.) — free on Google
+   Fonts, single 400 weight with an optical-size axis. */
+const hedvig = Hedvig_Letters_Serif({
     subsets: ['latin'],
-    variable: '--font-fraunces',
-    display: 'swap',
-    axes: ['opsz']
+    variable: '--font-hedvig',
+    display: 'swap'
 });
 
 export const metadata: Metadata = {
@@ -39,7 +40,7 @@ const Layout = ({ children }: Readonly<{ children: ReactNode }>) => {
     return (
         <html suppressHydrationWarning lang='en'>
             <body
-                className={`${geistSans.variable} ${geistMono.variable} ${fraunces.variable} bg-background text-foreground font-sans overscroll-none antialiased`}>
+                className={`${geistSans.variable} ${geistMono.variable} ${hedvig.variable} bg-background text-foreground font-sans overscroll-none antialiased`}>
                 <ThemeProvider forcedTheme='light' attribute='class'>
                     <SmoothScroll />
                     <SiteHeader />

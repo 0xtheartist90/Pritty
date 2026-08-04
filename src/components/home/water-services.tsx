@@ -1,76 +1,75 @@
 import Link from 'next/link';
 
-import { BargingIcon, BuildingIcon, DredgingIcon } from '@/components/home/service-icons';
 import Reveal from '@/components/reveal';
 
 import { ArrowUpRight } from 'lucide-react';
 
 const ITEMS = [
     {
-        icon: DredgingIcon,
         title: 'Dredging',
-        body: 'Restore depth and clarity to your pond or lakefront with precision dredging.'
+        meta: 'Ponds & lakefronts',
+        body: 'Restore depth and clarity with precision dredging.'
     },
     {
-        icon: BargingIcon,
         title: 'Barging',
-        body: 'Reliable barging and marine logistics for your water-access property.'
+        meta: 'Water-access properties',
+        body: 'Reliable barging and marine logistics on your schedule.'
     },
     {
-        icon: BuildingIcon,
         title: 'Building',
-        body: 'Construction for your waterfront shoreline, built to last a lifetime.'
+        meta: 'Shorelines & structures',
+        body: 'Waterfront construction, built to last a lifetime.'
     }
 ];
 
 /**
- * "Inspired by Water": the marine services as hairline-divided cells on a dark
- * ground, icon top and content anchored to the bottom. The water video lives in
- * its own full-width banner section right below (video-banner.tsx).
+ * "Inspired by Water": marine capabilities as an index of hairline rows — name,
+ * territory and description in quiet columns, a row-level invert on hover. The
+ * water video lives in its own full-width banner right below (video-banner.tsx).
  */
 const WaterServices = () => {
     return (
-        <section className='bg-[#0e1a13] py-24 sm:py-32'>
+        <section className='bg-[#0e1a13] py-24 sm:py-32 lg:pt-28 lg:pb-10'>
             <div className='mx-auto w-full max-w-7xl px-5 sm:px-8'>
-                <div className='grid gap-8 lg:grid-cols-12 lg:items-end'>
-                    <div className='lg:col-span-7'>
-                        <Reveal variant='blur'>
-                            <h2 className='font-editorial text-3xl leading-[1.04] tracking-tight text-white sm:text-4xl lg:text-6xl'>
-                                Inspired by <span className='font-display font-light italic'>water</span>
-                            </h2>
-                        </Reveal>
-                    </div>
-                    <Reveal variant='up' delay={160} className='lg:col-span-4 lg:col-start-9'>
-                        <p className='leading-relaxed text-white/75'>
-                            Years of working on and around the water have given us a rare set of skills. Robust
-                            knowledge, purpose-built equipment and a sustainable practice recognized with the Green
-                            Stamp Award.
+                {/* Compact header: the label and reading text sit beside the
+                    headline so the wheel below can rise sooner. */}
+                <div className='grid gap-10 lg:grid-cols-12 lg:items-start'>
+                    <Reveal variant='blur' className='lg:col-span-8'>
+                        <h2 className='font-editorial max-w-3xl text-4xl leading-[0.95] text-white [text-indent:2.2em] sm:text-5xl lg:text-6xl'>
+                            Inspired by water, shaped by years of working on it.
+                        </h2>
+                    </Reveal>
+                    <Reveal variant='up' delay={140} className='lg:col-span-4'>
+                        <p className='font-display text-white/60'>On the water</p>
+                        <p className='mt-5 max-w-xs text-sm leading-relaxed text-white/60'>
+                            Robust knowledge, purpose-built equipment and a sustainable practice recognized with the
+                            Green Stamp Award.
                         </p>
                     </Reveal>
                 </div>
 
-                <Reveal delay={220}>
-                    <div className='mt-16 grid divide-y divide-white/15 border-y border-white/15 lg:grid-cols-3 lg:divide-x lg:divide-y-0'>
-                        {ITEMS.map(({ icon: Icon, title, body }) => (
-                            <Link
-                                key={title}
-                                href='/contact'
-                                className='group flex flex-col justify-between gap-12 p-7 transition-colors duration-500 hover:bg-white/5 sm:p-9 lg:min-h-80'>
-                                <Icon className='size-11 text-white/75 transition-all duration-500 group-hover:-translate-y-1 group-hover:text-white' />
-                                <div>
-                                    <h3 className='font-editorial text-2xl tracking-tight text-white'>
-                                        {title}
-                                    </h3>
-                                    <p className='mt-3 max-w-xs text-sm leading-relaxed text-white/60'>{body}</p>
-                                    <span className='mt-7 inline-flex items-center gap-1.5 font-mono text-xs tracking-wider text-white/80 uppercase transition-colors group-hover:text-white'>
-                                        Book Now
-                                        <ArrowUpRight className='size-3.5 transition-transform duration-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5' />
-                                    </span>
+                <div className='mt-16 lg:mt-0'>
+                    {/* On desktop the wheel section below carries the services;
+                        this index only shows where the wheel is hidden. */}
+                    <Reveal delay={140} className='lg:hidden'>
+                        <div>
+                            {/* Hairlines live on the wrapper so they hold the content grid,
+                                while the hover surface bleeds past the text on every side. */}
+                            {ITEMS.map(({ title, meta, body }) => (
+                                <div key={title} className='border-t border-white/15 last:border-b'>
+                                    <Link
+                                        href='/contact'
+                                        className='group relative -mx-4 grid grid-cols-2 items-baseline gap-x-5 gap-y-1 px-4 py-7 pr-16 text-white transition-colors duration-300 hover:bg-white hover:text-[#0e1a13] sm:grid-cols-[1.1fr_1fr_1.4fr]'>
+                                        <h3 className='row-span-2 self-start sm:row-span-1'>{title}</h3>
+                                        <p className='text-sm text-white/50 group-hover:text-[#0e1a13]/60'>{meta}</p>
+                                        <p className='text-sm text-white/50 group-hover:text-[#0e1a13]/60'>{body}</p>
+                                        <ArrowUpRight className='absolute top-1/2 right-6 size-4 -translate-y-1/2 opacity-60 transition-opacity group-hover:opacity-100' />
+                                    </Link>
                                 </div>
-                            </Link>
-                        ))}
-                    </div>
-                </Reveal>
+                            ))}
+                        </div>
+                    </Reveal>
+                </div>
             </div>
         </section>
     );

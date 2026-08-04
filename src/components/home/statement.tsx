@@ -13,13 +13,15 @@ const Statement = () => {
     return (
         <section className='relative bg-[#42654a]'>
             <div className='relative mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32'>
-                <p className='font-editorial max-w-4xl text-3xl leading-[1.18] tracking-tight text-[#f2efe6] sm:text-4xl lg:text-6xl'>
+                {/* First-line indent — the editorial paragraph signature of
+                    architecture-bureau typography. */}
+                <p className='font-editorial max-w-4xl text-3xl leading-[1.05] tracking-tight text-[#f2efe6] [text-indent:2.4em] sm:text-4xl lg:text-6xl'>
                     <TextReveal text='Twenty years of shaping land and water into places that feel inevitable.' stagger={40} />{' '}
                     <TextReveal
                         text='We listen to the site first, then we design.'
                         delay={500}
                         stagger={40}
-                        className='font-display font-light text-[#c3d8c3] italic'
+                        className='font-display font-light text-[#c3d8c3]'
                     />
                 </p>
                 <Reveal variant='up' delay={300}>

@@ -12,14 +12,14 @@ const AREAS = ['Blue Mountain', 'Collingwood', 'Georgian Bay', 'Markham', 'Musko
  */
 const ServiceAreasSection = () => {
     return (
-        <section className='bg-secondary/40 border-border/60 border-y'>
-            <div className='mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32'>
+        <section className='bg-secondary/40 border-border/60 relative border-y'>
+            <div className='relative mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32'>
                 <div className='grid gap-8 lg:grid-cols-12 lg:items-end'>
                     <div className='lg:col-span-7'>
                         <Reveal variant='blur'>
-                            <h2 className='font-editorial text-foreground text-3xl leading-[1.04] tracking-tight sm:text-4xl lg:text-6xl'>
+                            <h2 className='font-editorial text-foreground text-3xl leading-[0.95] tracking-tight sm:text-4xl lg:text-6xl'>
                                 Serving Southern Ontario’s{' '}
-                                <span className='font-display text-primary font-light italic'>finest waterfronts</span>
+                                <span className='font-display text-primary font-light'>finest waterfronts</span>
                             </h2>
                         </Reveal>
                     </div>

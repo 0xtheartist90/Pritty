@@ -55,7 +55,7 @@ const SiteFooter = () => {
                     <Marquee duration={42}>
                         {MARQUEE_WORDS.map((word) => (
                             <span key={word} className='flex items-center'>
-                                <span className='font-display text-muted-foreground text-base font-light italic'>
+                                <span className='font-display text-muted-foreground text-base font-light'>
                                     {word}
                                 </span>
                                 <span className='bg-foreground/20 mx-10 size-1.5 rotate-45' />
@@ -66,10 +66,10 @@ const SiteFooter = () => {
 
                 <div className='mx-auto max-w-7xl px-5 sm:px-8'>
                     <Link href='/contact' className='group border-border/70 block border-b py-10 sm:py-12'>
-                        <p className='font-display text-muted-foreground text-lg font-light italic'>
+                        <p className='font-display text-muted-foreground text-lg font-light'>
                             Have a project in mind?
                         </p>
-                        <span className='font-editorial mt-4 flex flex-wrap items-baseline text-[clamp(2rem,4.5vw,3.75rem)] leading-[1.04] tracking-tight'>
+                        <span className='font-editorial mt-4 flex flex-wrap items-baseline text-[clamp(2rem,4.5vw,3.75rem)] leading-[0.95] tracking-tight'>
                             <TextReveal text='Let’s shape your shoreline' stagger={80} />
                             <ArrowUpRight className='text-foreground/50 group-hover:text-foreground ml-2 size-[0.7em] shrink-0 self-center transition-all duration-500 group-hover:translate-x-2 group-hover:-translate-y-2' />
                         </span>
@@ -96,7 +96,7 @@ const SiteFooter = () => {
                         <div className='space-y-7 lg:col-span-3 lg:col-start-8'>
                             {OFFICES.map((office) => (
                                 <div key={office.name}>
-                                    <p className='font-display text-foreground text-lg font-light italic'>
+                                    <p className='font-display text-foreground text-lg font-light'>
                                         {office.name}
                                     </p>
                                     <p className='text-muted-foreground mt-2 max-w-56 text-sm leading-relaxed'>
@@ -118,7 +118,7 @@ const SiteFooter = () => {
 
                         <div className='flex flex-col justify-between gap-10 lg:col-span-2 lg:col-start-11'>
                             <div>
-                                <p className='font-display text-foreground text-lg font-light italic'>Where we work</p>
+                                <p className='font-display text-foreground text-lg font-light'>Where we work</p>
                                 <p className='text-muted-foreground mt-3 text-sm leading-loose'>
                                     {AREAS.map((area, i) => (
                                         <span key={area}>
@@ -164,7 +164,7 @@ const SiteFooter = () => {
                                 target='_blank'
                                 rel='noopener noreferrer'
                                 className='text-muted-foreground/70 hover:text-foreground transition-colors'>
-                                Powered by <span className='font-display italic'>Virtuo</span>
+                                Powered by <span className='font-display'>Virtuo</span>
                             </a>
                         </div>
                         <LocalTime />

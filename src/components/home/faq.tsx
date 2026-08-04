@@ -52,7 +52,7 @@ const Faq = () => {
                     <Reveal variant='blur'>
                         <h2 className='font-editorial text-3xl leading-[1.05] tracking-tight text-[#f2efe6] sm:text-4xl lg:text-6xl'>
                             Questions,
-                            <span className='font-display mt-1 block font-light text-[#c3d8c3] italic'>answered</span>
+                            <span className='font-display mt-1 block font-light text-[#c3d8c3]'>answered</span>
                         </h2>
                     </Reveal>
                     <Reveal delay={160}>

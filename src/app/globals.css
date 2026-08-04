@@ -132,8 +132,8 @@
 @theme inline {
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-  --font-display: var(--font-fraunces);
-  --font-editorial: var(--font-fraunces);
+  --font-display: var(--font-hedvig);
+  --font-editorial: var(--font-geist-sans);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -273,26 +273,32 @@
     clip-path: inset(0 0 0 0);
   }
 
-  /* Media curtain — a solid panel sweeps off the frame while the image settles
-     from a gentle zoom. The signature reveal for photography. */
+  /* Media curtain — a row of slim panels lifts away one by one while the image
+     settles from a gentle zoom. The signature reveal for photography. */
   .reveal-media {
     position: relative;
   }
-  .reveal-media::after {
-    content: '';
+  .reveal-media__cols {
     position: absolute;
     inset: 0;
     z-index: 5;
-    background: var(--primary);
-    transform: scaleX(1);
-    transform-origin: right;
-    transition: transform 1.4s cubic-bezier(0.7, 0, 0.2, 1);
+    display: flex;
+    pointer-events: none;
   }
-  .reveal-media.is-visible::after {
-    transform: scaleX(0);
+  .reveal-media__cols > span {
+    flex: 1 1 0;
+    /* Overlap by a hair so no seam shows between panels mid-flight. */
+    margin-right: -1px;
+    background: var(--background);
+    transform: translateY(0);
+    transition: transform 1.1s cubic-bezier(0.7, 0, 0.2, 1);
+    will-change: transform;
+  }
+  .reveal-media.is-visible .reveal-media__cols > span {
+    transform: translateY(-100.5%);
   }
   .reveal-media img {
-    transform: scale(1.22);
+    transform: scale(1.18);
     transition: transform 2.3s cubic-bezier(0.16, 1, 0.3, 1);
     will-change: transform;
   }
@@ -306,6 +312,9 @@
     display: inline-block;
     overflow: hidden;
     vertical-align: bottom;
+    /* text-indent inherits; without this reset an indented paragraph would
+       indent every word box instead of only its first line. */
+    text-indent: 0;
     /* Padding + negative margin give tall serif caps and descenders room
        inside the clip without affecting layout. */
     padding: 0.15em 0 0.1em;
@@ -373,7 +382,7 @@
       filter: none;
       clip-path: none;
     }
-    .reveal-media::after {
+    .reveal-media__cols {
       display: none;
     }
     .tr-w > span {
@@ -386,10 +395,12 @@
   }
 }
 
-/* Editorial display serif at a light optical weight — the elevated, elegant
-   register for all large titles. */
+/* Editorial display type — the grotesk at a tight, architectural setting for
+   all large titles. The serif (font-display) is reserved for accent words and
+   small meta labels, the inverted hierarchy of high-end bureau sites. */
 .font-editorial {
-  font-weight: 330;
+  font-weight: 400;
+  letter-spacing: -0.03em;
 }
 
 /* Lenis smooth scrolling (see components/smooth-scroll.tsx). */

@@ -11,6 +11,7 @@ import ServiceAreasSection from '@/components/home/service-areas-section';
 import Statement from '@/components/home/statement';
 import VideoBanner from '@/components/home/video-banner';
 import WaterServices from '@/components/home/water-services';
+import WaterWheel from '@/components/home/water-wheel';
 
 /**
  * Pritty Landscapes homepage — naturally refined, inspired by water.
@@ -29,6 +30,8 @@ const Page = () => {
             <MarqueeBand />
 
             <WaterServices />
+
+            <WaterWheel />
 
             <VideoBanner />
 

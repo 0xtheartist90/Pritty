@@ -19,7 +19,7 @@ const FinalCta = () => {
                 <div className='max-w-2xl'>
                     <Reveal variant='blur' delay={120}>
                         <h2 className='font-editorial text-4xl leading-[1.02] tracking-tight text-white sm:text-5xl lg:text-7xl'>
-                            Your Dream Landscape <span className='font-display font-light italic'>Starts Here</span>
+                            Your Dream Landscape <span className='font-display font-light'>Starts Here</span>
                         </h2>
                     </Reveal>
                     <Reveal variant='up' delay={280} className='mt-9 flex flex-wrap items-center gap-x-8 gap-y-4'>

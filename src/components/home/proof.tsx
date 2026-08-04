@@ -16,10 +16,10 @@ const Proof = () => {
             <div className='relative mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32'>
                 <div className='grid gap-10 lg:grid-cols-12 lg:gap-8'>
                     <Reveal variant='blur' className='lg:col-span-9'>
-                        <blockquote className='font-editorial text-foreground text-2xl leading-[1.22] tracking-tight sm:text-3xl lg:text-5xl'>
+                        <blockquote className='font-editorial text-foreground text-2xl leading-[1.08] tracking-tight [text-indent:2.4em] sm:text-3xl lg:text-5xl'>
                             They didn’t just build a shoreline, they gave us back our connection to the water. Every
                             stone feels intentional.{' '}
-                            <span className='font-display text-primary font-light italic'>
+                            <span className='font-display text-primary font-light'>
                                 Truly a distinctively different approach.
                             </span>
                         </blockquote>
