@@ -14,9 +14,8 @@ const ORBIT_RADIUS = 0.45;
 /** Icons sit halfway between rays (rays fall every 45°) so they never cover a line. */
 const ORBIT_OFFSET = 22.5;
 
-/** Total wheel rotation across the full scroll — three quarters of a circle
-    per chapter. */
-const TOTAL_ROTATION = 810;
+/** Total wheel rotation across the full scroll — half a circle per chapter. */
+const TOTAL_ROTATION = 540;
 
 /** Beats within a chapter's circle: title at the start, then the subtitle,
     then the reading text — each earned with its own stretch of scroll. */
@@ -127,7 +126,7 @@ const WaterWheel = () => {
     }, []);
 
     return (
-        <section ref={sectionRef} className='relative hidden h-[675vh] bg-[#0e1a13] lg:block'>
+        <section ref={sectionRef} className='relative hidden h-[450vh] bg-[#0e1a13] lg:block'>
             <div className='sticky top-0 flex h-screen w-full items-center justify-center overflow-hidden'>
                 {/* Compass rays, fading out towards the centre so the type stays clear. */}
                 <div
@@ -183,59 +182,57 @@ const WaterWheel = () => {
                     ))}
                 </div>
 
-                {/* Chapter stack: the icon leads, the title swaps through a line mask
-                    (with descender headroom), and the serif subtitle + reading text
-                    follow on the second beat. Outgoing lines fade fast so a skipped
-                    chapter never ghosts through the centre. */}
+                {/* Chapter stack. A chapter builds from the icon down and unwinds in
+                    reverse — reading text first, icon last — with everything always
+                    travelling upward, so one chapter hands over to the next as a
+                    single continuous movement instead of a swap. */}
                 {PHASES.map(({ icon: Icon, title, serif, body }, i) => {
                     const parked = Math.abs(phase - i) > 1;
-                    const leave = i < phase;
+                    const leaving = i < phase;
+
+                    /** Position and timing for one element of the chapter. */
+                    const track = (shown: boolean, travel: string, enterAt: number, leaveAt: number) => {
+                        const delay = shown ? enterAt : leaving ? leaveAt : 0;
+
+                        return {
+                            className: shown
+                                ? 'translate-y-0 opacity-100'
+                                : `${leaving ? '-' : ''}${travel} opacity-0`,
+                            style: {
+                                transition: parked
+                                    ? 'none'
+                                    : `transform 850ms ${EASE} ${delay}ms, opacity 500ms ${EASE} ${delay}ms`
+                            }
+                        };
+                    };
+
+                    const icon = track(phase === i, 'translate-y-6', 200, 220);
+                    const heading = track(phase === i, 'translate-y-[135%]', 270, 150);
+                    const subtitle = track(phase === i && showSerif, 'translate-y-6', 0, 80);
+                    const text = track(phase === i && showBody, 'translate-y-6', 0, 0);
 
                     return (
                         <div
                             key={i}
                             className='pointer-events-none absolute inset-0 flex flex-col items-center justify-center text-center'
                             aria-hidden={phase !== i}>
-                            <Icon
-                                className={`size-10 text-white/85 ${
-                                    phase === i ? 'translate-y-0 opacity-100' : leave ? '-translate-y-4 opacity-0' : 'translate-y-4 opacity-0'
-                                }`}
-                                style={{
-                                    transition: parked ? 'none' : `transform 700ms ${EASE}, opacity 350ms ease`
-                                }}
-                            />
+                            <Icon className={`size-10 text-white/85 ${icon.className}`} style={icon.style} />
                             <h2 className='font-editorial mt-5 w-full text-[4.2vw] leading-[0.9] text-white'>
                                 {/* Padding + negative margin give descenders room inside the clip. */}
                                 <span className='-mb-[0.18em] block overflow-hidden pb-[0.18em]'>
-                                    <span
-                                        className={`block ${
-                                            phase === i
-                                                ? 'translate-y-0 opacity-100'
-                                                : leave
-                                                  ? '-translate-y-[135%] opacity-0'
-                                                  : 'translate-y-[135%] opacity-0'
-                                        }`}
-                                        style={{
-                                            transition: parked
-                                                ? 'none'
-                                                : `transform 700ms ${EASE} 60ms, opacity 350ms ease ${phase === i ? '210ms' : '0ms'}`
-                                        }}>
+                                    <span className={`block ${heading.className}`} style={heading.style}>
                                         {title}
                                     </span>
                                 </span>
                             </h2>
                             <p
-                                className={`font-display mt-6 text-xl text-white/70 lg:text-2xl ${
-                                    phase === i && showSerif ? 'translate-y-0 opacity-100' : 'translate-y-5 opacity-0'
-                                }`}
-                                style={{ transition: `transform 800ms ${EASE}, opacity 500ms ease` }}>
+                                className={`font-display mt-6 text-xl text-white/70 lg:text-2xl ${subtitle.className}`}
+                                style={subtitle.style}>
                                 {serif}
                             </p>
                             <p
-                                className={`mx-auto mt-5 max-w-sm text-sm leading-relaxed text-white/60 ${
-                                    phase === i && showBody ? 'translate-y-0 opacity-100' : 'translate-y-5 opacity-0'
-                                }`}
-                                style={{ transition: `transform 800ms ${EASE}, opacity 500ms ease` }}>
+                                className={`mx-auto mt-5 max-w-sm text-sm leading-relaxed text-white/60 ${text.className}`}
+                                style={text.style}>
                                 {body}
                             </p>
                         </div>
